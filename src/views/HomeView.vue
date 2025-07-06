@@ -7,37 +7,23 @@
       <div class="absolute inset-0 opacity-30">
         <div class="w-full h-full bg-gradient-to-br from-transparent via-blueprint/5 to-blueprint/10"></div>
       </div>
-      
+
       <!-- Animated sketch strokes effect -->
       <div class="absolute inset-0 pointer-events-none">
         <svg class="w-full h-full" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
           <defs>
             <pattern id="blueprintGrid" width="50" height="50" patternUnits="userSpaceOnUse">
-              <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(107, 122, 143, 0.15)" stroke-width="0.5"/>
+              <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(107, 122, 143, 0.15)" stroke-width="0.5" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#blueprintGrid)" />
-          
+
           <!-- Animated drawing lines -->
           <g class="drawing-lines">
-            <path 
-              d="M100,200 Q300,100 500,200 T900,200" 
-              fill="none" 
-              stroke="rgba(26, 26, 26, 0.2)" 
-              stroke-width="1"
-              stroke-dasharray="5,5"
-              class="animate-draw-line"
-              style="animation-delay: 1s;"
-            />
-            <path 
-              d="M200,400 L800,400 L800,600 L200,600 Z" 
-              fill="none" 
-              stroke="rgba(26, 26, 26, 0.15)" 
-              stroke-width="0.8"
-              stroke-dasharray="8,4"
-              class="animate-draw-line"
-              style="animation-delay: 2s;"
-            />
+            <path d="M100,200 Q300,100 500,200 T900,200" fill="none" stroke="rgba(26, 26, 26, 0.2)" stroke-width="1"
+              stroke-dasharray="5,5" class="animate-draw-line" style="animation-delay: 1s;" />
+            <path d="M200,400 L800,400 L800,600 L200,600 Z" fill="none" stroke="rgba(26, 26, 26, 0.15)"
+              stroke-width="0.8" stroke-dasharray="8,4" class="animate-draw-line" style="animation-delay: 2s;" />
           </g>
         </svg>
       </div>
@@ -48,58 +34,40 @@
       <div class="max-w-4xl mx-auto">
         <!-- Architectural Quote -->
         <div class="mb-3xl">
-          <h1 class="h1 text-ink mb-lg fade-in">
-            "ARCHITECTURE IS THE LEARNED GAME,<br>
-            CORRECT AND MAGNIFICENT,<br>
-            OF FORMS ASSEMBLED IN THE LIGHT."
+          <h1 class="h1 text-ink mb-lg slide-in-left">
+            "MİMARLIK, IŞIKTA BİR ARAYA GETİRİLEN<br>
+            FORMLARIN ÖĞRENME OYUNU,<br>
+            DOĞRU VE MUHTEŞEM."
           </h1>
-          <div class="meta-data text-blueprint fade-in" style="animation-delay: 0.5s;">
+          <div class="meta-data text-blueprint slide-in-right delay-300">
             — LE CORBUSIER
           </div>
         </div>
 
         <!-- Entry Button -->
-        <div class="fade-in" style="animation-delay: 1s;">
-          <router-link 
-            to="/projects" 
-            class="entry-button inline-flex items-center gap-md px-xl py-lg border border-ink text-ink hover:border-annotation hover:text-annotation transition-all duration-250 ease-architect group"
-          >
-            <span class="uppercase tracking-wider">Explore the Work</span>
-            <svg 
-              class="w-5 h-5 transition-transform duration-250 group-hover:translate-x-1" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path 
-                stroke-linecap="round" 
-                stroke-linejoin="round" 
-                stroke-width="1" 
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
+        <div class="bounce-in delay-600 pt-10">
+          <router-link to="/projects"
+            class="entry-button inline-flex items-center gap-md px-xl py-lg border border-ink text-ink hover:border-annotation hover:text-annotation transition-all duration-250 ease-architect group float">
+            <span class="uppercase tracking-wider">Projeleri Keşfet</span>
+            <svg class="w-5 h-5 transition-transform duration-250 group-hover:translate-x-1" fill="none"
+              stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </router-link>
         </div>
       </div>
 
-      <!-- Scroll Indicator -->
-      <div class="absolute bottom-xl left-1/2 transform -translate-x-1/2 fade-in" style="animation-delay: 2s;">
-        <div class="flex flex-col items-center text-blueprint">
-          <div class="meta-data mb-sm">Scroll</div>
-          <div class="w-px h-8 bg-blueprint opacity-60"></div>
-        </div>
-      </div>
     </div>
 
     <!-- Corner Annotations -->
-    <div class="absolute top-xl left-xl text-blueprint meta-data fade-in" style="animation-delay: 1.5s;">
-      Digital Atelier
+    <div class="absolute top-xl left-xl text-blueprint meta-data slide-down delay-800">
+      Dijital Atölye
     </div>
-    <div class="absolute top-xl right-xl text-blueprint meta-data fade-in" style="animation-delay: 1.8s;">
-      Est. 2024
+    <div class="absolute top-xl right-xl text-blueprint meta-data slide-down delay-900">
+      Kur. 2024
     </div>
-    <div class="absolute bottom-xl left-xl text-blueprint meta-data fade-in" style="animation-delay: 2.2s;">
-      Portfolio
+    <div class="absolute bottom-xl left-xl text-blueprint meta-data scale-in delay-1000">
+      Portfolyo
     </div>
   </div>
 </template>
@@ -165,7 +133,7 @@
     font-size: 1.8rem;
     line-height: 1.3;
   }
-  
+
   .vestibule .meta-data {
     font-size: 0.7rem;
   }

@@ -78,25 +78,58 @@
   --grid-size: 25px;
 }
 
-/* Dark mode considerations - maintain the same palette */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-canvas: #1A1A1A;
-    --color-ink: #F4F4F1;
-    --color-blueprint: #8B9AAF;
-    --color-annotation: #D86A4A;
-    --color-grid: rgba(139, 154, 175, 0.08);
-    
-    --color-background: var(--color-canvas);
-    --color-background-soft: var(--color-canvas);
-    --color-background-mute: var(--color-canvas);
-    
-    --color-border: var(--color-blueprint);
-    --color-border-hover: var(--color-annotation);
-    
-    --color-heading: var(--color-ink);
-    --color-text: var(--color-ink);
-  }
+/* Dark mode theme override - controlled by class instead of media query */
+.dark-mode {
+  --color-canvas: #1A1A1A;
+  --color-ink: #F4F4F1;
+  --color-blueprint: #8B9AAF;
+  --color-annotation: #D86A4A;
+  --color-grid: rgba(139, 154, 175, 0.12);
+  
+  --color-background: var(--color-canvas);
+  --color-background-soft: var(--color-canvas);
+  --color-background-mute: var(--color-canvas);
+  
+  --color-border: var(--color-blueprint);
+  --color-border-hover: var(--color-annotation);
+  
+  --color-heading: var(--color-ink);
+  --color-text: var(--color-ink);
+  
+  /* Update legacy compatibility colors */
+  --color-primary-background: var(--color-canvas);
+  --color-primary-text: var(--color-ink);
+  --color-accent-line: var(--color-blueprint);
+  --color-interactive-hover: var(--color-annotation);
+  --color-secondary-background: var(--color-canvas);
+  --color-muted-text: var(--color-blueprint);
+}
+
+/* Light mode theme - explicit class */
+.light-mode {
+  --color-canvas: #F4F4F1;
+  --color-ink: #1A1A1A;
+  --color-blueprint: #6B7A8F;
+  --color-annotation: #C85A3A;
+  --color-grid: rgba(107, 122, 143, 0.08);
+  
+  --color-background: var(--color-canvas);
+  --color-background-soft: var(--color-canvas);
+  --color-background-mute: var(--color-canvas);
+  
+  --color-border: var(--color-blueprint);
+  --color-border-hover: var(--color-annotation);
+  
+  --color-heading: var(--color-ink);
+  --color-text: var(--color-ink);
+  
+  /* Update legacy compatibility colors */
+  --color-primary-background: var(--color-canvas);
+  --color-primary-text: var(--color-ink);
+  --color-accent-line: var(--color-blueprint);
+  --color-interactive-hover: var(--color-annotation);
+  --color-secondary-background: var(--color-canvas);
+  --color-muted-text: var(--color-blueprint);
 }
 
 /* Universal Reset */
@@ -258,7 +291,7 @@ button:active {
   margin-bottom: var(--section-gap);
 }
 
-/* Animation Foundations */
+/* Enhanced Animation Foundations */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -275,6 +308,28 @@ button:active {
   }
 }
 
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 @keyframes drawLine {
   from { 
     stroke-dashoffset: 100;
@@ -284,13 +339,150 @@ button:active {
   }
 }
 
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+/* Animation Classes */
 .fade-in {
-  animation: fadeIn 0.6s ease-out;
+  animation: fadeIn 0.8s ease-out forwards;
+  opacity: 0;
 }
 
 .slide-up {
-  animation: slideUp 0.6s ease-out;
+  animation: slideUp 0.8s ease-out forwards;
+  opacity: 0;
 }
+
+.slide-in-left {
+  animation: slideInLeft 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.scale-in {
+  animation: scaleIn 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.slide-down {
+  animation: slideDown 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.bounce-in {
+  animation: bounceIn 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.pulse-slow {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typewriter 2s steps(40) 1s forwards;
+  width: 0;
+}
+
+.typewriter::after {
+  content: '|';
+  animation: blink 1s infinite;
+  margin-left: 2px;
+}
+
+/* Staggered Animation Delays */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-700 { animation-delay: 0.7s; }
+.delay-800 { animation-delay: 0.8s; }
+.delay-900 { animation-delay: 0.9s; }
+.delay-1000 { animation-delay: 1s; }
 
 /* Blueprint Grid Overlay */
 .blueprint-grid {

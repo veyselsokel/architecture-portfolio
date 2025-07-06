@@ -5,16 +5,16 @@
       
       <!-- Section Header -->
       <header class="text-center mb-3xl">
-        <h1 class="h1 text-ink mb-lg">SELECTED WORKS</h1>
-        <div class="meta-data text-blueprint">
-          A CURATED EXHIBITION OF ARCHITECTURAL THOUGHT
+        <h1 class="h1 text-ink mb-lg slide-in-left">SEÇİLMİŞ PROJELER</h1>
+        <div class="meta-data text-blueprint slide-in-right delay-200">
+          MİMARİ DÜŞÜNCENİN KÜRATÖRLÜ SERGİSİ
         </div>
       </header>
 
       <DottedDivider />
 
       <!-- Sorting Controls -->
-      <div class="flex justify-center mb-3xl">
+      <div class="flex justify-center mb-3xl scale-in delay-400">
         <div class="inline-flex border border-blueprint">
           <button
             @click="sortBy = 'chronology'"
@@ -25,7 +25,7 @@
                 : 'bg-canvas text-blueprint hover:text-annotation hover:bg-annotation/5'
             ]"
           >
-            CHRONOLOGY
+            KRONOLOJİK
           </button>
           <button
             @click="sortBy = 'category'"
@@ -36,7 +36,7 @@
                 : 'bg-canvas text-blueprint hover:text-annotation hover:bg-annotation/5'
             ]"
           >
-            CATEGORY
+            KATEGORİ
           </button>
         </div>
       </div>
@@ -46,8 +46,8 @@
         <article
           v-for="(project, index) in sortedProjects"
           :key="project.id"
-          class="project-card group cursor-pointer"
-          :style="{ 'animation-delay': `${index * 0.1}s` }"
+          class="project-card group cursor-pointer slide-up"
+          :style="{ 'animation-delay': `${0.6 + index * 0.1}s` }"
           @click="navigateToProject(project.id)"
         >
           <!-- Project Image Container -->
@@ -91,8 +91,8 @@
 
       <!-- Footer Note -->
       <footer class="text-center mt-3xl pt-3xl border-t border-blueprint/30">
-        <div class="meta-data text-blueprint">
-          EACH PROJECT REPRESENTS A DIALOGUE BETWEEN CONCEPT AND CONTEXT
+        <div class="meta-data text-blueprint fade-in delay-1000">
+          HER PROJE KONSEPT VE BAĞLAM ARASINDA BİR DİYALOGU TEMSIL EDER
         </div>
       </footer>
     </div>
@@ -119,55 +119,55 @@ const router = useRouter();
 const projects = ref<Project[]>([
   {
     id: 1,
-    title: 'URBAN OASIS',
-    year: 2023,
-    category: 'RESIDENTIAL',
-    location: 'NEW YORK',
+    title: 'SANATÇI KONAKLAMA',
+    year: 2024,
+    category: 'KÜLTÜREL',
+    location: 'İSTANBUL',
     image: 'src/assets/images/Architecture Design Photo.jpg',
     sketchImage: 'src/assets/images/Architecture Draw Photo.jpg'
   },
   {
     id: 2,
-    title: 'ECO TOWER',
-    year: 2022,
-    category: 'COMMERCIAL',
-    location: 'COPENHAGEN',
+    title: 'AFET SONRASI YAŞAM ALANI',
+    year: 2024,
+    category: 'ACİL DURUM',
+    location: 'İSTANBUL',
     image: 'src/assets/images/Architecture Photo 31759015.jpg',
     sketchImage: 'src/assets/images/Architecture Draw Photo (1).jpg'
   },
   {
     id: 3,
-    title: 'COMMUNITY HUB',
-    year: 2021,
-    category: 'PUBLIC',
-    location: 'TOKYO',
+    title: 'KONAKLAMA KOMPLEKSİ',
+    year: 2023,
+    category: 'TİCARİ',
+    location: 'İSTANBUL',
     image: 'src/assets/images/Architecture Photo Yajun Dong.jpg',
     sketchImage: 'src/assets/images/Architecture Draw Photo (2).jpg'
   },
   {
     id: 4,
-    title: 'RIVERSIDE VILLAS',
-    year: 2020,
-    category: 'RESIDENTIAL',
-    location: 'AMSTERDAM',
+    title: 'HALİÇ SURLARININ TANITIMI',
+    year: 2023,
+    category: 'KÜLTÜREL',
+    location: 'İSTANBUL',
     image: 'src/assets/images/Buildings.jpeg',
     sketchImage: 'src/assets/images/Architecture Draw Photo (3).jpg'
   },
   {
     id: 5,
-    title: 'MODERN MUSEUM',
-    year: 2019,
-    category: 'CULTURAL',
-    location: 'BERLIN',
+    title: 'ÖZEL EĞİTİM REHABİLİTASYON',
+    year: 2022,
+    category: 'EĞİTİM',
+    location: 'İSTANBUL',
     image: 'src/assets/images/draw.jpeg',
     sketchImage: 'src/assets/images/Architecture Draw Photo (4).jpg'
   },
   {
     id: 6,
-    title: 'SUSTAINABLE SCHOOL',
-    year: 2018,
-    category: 'EDUCATIONAL',
-    location: 'STOCKHOLM',
+    title: 'AGROTOPIA KENTSEL TARIM',
+    year: 2025,
+    category: 'SÜRDÜRÜLEBİLİR',
+    location: 'İSTANBUL',
     image: 'src/assets/images/Interior Design Pin.jpeg',
     sketchImage: 'src/assets/images/Architecture Draw Photo (5).jpg'
   },

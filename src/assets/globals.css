@@ -9,48 +9,7 @@
   background-size: 25px 25px;
 }
 
-/* Sketch Mode (Grayscale) */
-.sketch-mode {
-  filter: grayscale(100%);
-}
-
-/* Notebook Mode (Architectural Paper Effect) */
-.notebook-mode {
-  position: relative;
-  background-color: #F9F9F7; /* Slightly warmer paper tone */
-}
-
-.notebook-mode::before {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    /* Horizontal ruled lines */
-    linear-gradient(to bottom, transparent 29px, rgba(200, 90, 58, 0.1) 30px, transparent 31px),
-    /* Vertical margin line */
-    linear-gradient(to right, transparent 80px, rgba(200, 90, 58, 0.2) 81px, transparent 82px),
-    /* Subtle paper grain texture */
-    radial-gradient(circle at 1px 1px, rgba(107, 122, 143, 0.05) 1px, transparent 0);
-  background-size: 100% 32px, 100% 100%, 4px 4px;
-  background-position: 0 20px, 0 0, 0 0;
-  pointer-events: none;
-  z-index: -1;
-}
-
-/* Additional notebook styling for text elements */
-.notebook-mode .h1,
-.notebook-mode .h2,
-.notebook-mode .h3 {
-  text-shadow: 0.5px 0.5px 0px rgba(26, 26, 26, 0.1);
-}
-
-.notebook-mode .body-text,
-.notebook-mode p {
-  line-height: 32px; /* Match the ruled lines */
-}
+/* Mode styles are now defined in main.css with higher specificity */
 
 /* Page Transition - Fade */
 .page-fade-enter-active,

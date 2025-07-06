@@ -6,7 +6,7 @@
       <div class="flex justify-between items-center h-16 px-md">
         <!-- Logo/Brand -->
         <router-link to="/" class="text-ink h3 hover:text-annotation transition-colors duration-250 ease-architect">
-          ATELIER
+          ATÖLYE
         </router-link>
 
         <!-- Desktop Navigation -->
@@ -14,35 +14,54 @@
           <div class="flex items-center gap-8">
             <router-link to="/projects"
               class="nav-link text-ink hover:text-annotation transition-colors duration-250 ease-architect relative">
-              WORK
+              PROJELER
             </router-link>
             <router-link to="/about"
               class="nav-link text-ink hover:text-annotation transition-colors duration-250 ease-architect relative">
-              DOSSIER
+              HAKKIMDA
             </router-link>
             <router-link to="/contact"
               class="nav-link text-ink hover:text-annotation transition-colors duration-250 ease-architect relative">
-              CONTACT
+              İLETİŞİM
             </router-link>
           </div>
 
-          <!-- Mode Toggles -->
-          <div class="flex items-center gap-2 ml-6 border-l border-blueprint/30 pl-6">
-            <button @click="appStore.toggleSketchMode" :class="[
-              'mode-toggle text-caption uppercase tracking-wider px-2 py-1 border transition-all duration-250 ease-architect',
-              appStore.isSketchMode
-                ? 'bg-annotation text-canvas border-annotation'
-                : 'bg-transparent text-blueprint border-blueprint hover:border-annotation hover:text-annotation'
-            ]">
-              SKETCH
-            </button>
-            <button @click="appStore.toggleNotebookMode" :class="[
-              'mode-toggle text-caption uppercase tracking-wider px-2 py-1 border transition-all duration-250 ease-architect',
-              appStore.isNotebookMode
-                ? 'bg-annotation text-canvas border-annotation'
-                : 'bg-transparent text-blueprint border-blueprint hover:border-annotation hover:text-annotation'
-            ]">
-              NOTES
+          <!-- Theme Toggle -->
+          <div class="flex items-center ml-6 border-l border-blueprint/30 pl-6">
+            <button 
+              @click="toggleTheme" 
+              :class="[
+                'theme-toggle flex items-center gap-2 text-caption uppercase tracking-wider px-3 py-2 border transition-all duration-250 ease-architect',
+                appStore.isDarkMode
+                  ? 'bg-annotation text-canvas border-annotation'
+                  : 'bg-transparent text-blueprint border-blueprint hover:border-annotation hover:text-annotation'
+              ]"
+              :title="appStore.isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
+            >
+              <!-- Sun Icon (Light Mode) -->
+              <svg 
+                v-if="!appStore.isDarkMode"
+                class="w-4 h-4" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <circle cx="12" cy="12" r="5"></circle>
+                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+              </svg>
+              
+              <!-- Moon Icon (Dark Mode) -->
+              <svg 
+                v-else
+                class="w-4 h-4" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+              </svg>
+              
+              <span>{{ appStore.isDarkMode ? 'KARANLIK' : 'AYDINLIK' }}</span>
             </button>
           </div>
         </div>
@@ -51,15 +70,15 @@
         <div class="hidden md:flex lg:hidden items-center gap-6">
           <router-link to="/projects"
             class="nav-link text-ink hover:text-annotation transition-colors duration-250 ease-architect relative">
-            WORK
+            PROJELER
           </router-link>
           <router-link to="/about"
             class="nav-link text-ink hover:text-annotation transition-colors duration-250 ease-architect relative">
-            ABOUT
+            HAKKIMDA
           </router-link>
           <router-link to="/contact"
             class="nav-link text-ink hover:text-annotation transition-colors duration-250 ease-architect relative">
-            CONTACT
+            İLETİŞİM
           </router-link>
         </div>
 
@@ -85,34 +104,52 @@
         <div class="space-y-xl text-center">
           <router-link @click="closeMenu" to="/projects"
             class="block h2 text-ink hover:text-annotation transition-colors duration-250">
-            WORK
+            PROJELER
           </router-link>
           <router-link @click="closeMenu" to="/about"
             class="block h2 text-ink hover:text-annotation transition-colors duration-250">
-            DOSSIER
+            HAKKIMDA
           </router-link>
           <router-link @click="closeMenu" to="/contact"
             class="block h2 text-ink hover:text-annotation transition-colors duration-250">
-            CONTACT
+            İLETİŞİM
           </router-link>
 
-          <!-- Mobile Mode Toggles -->
-          <div class="flex flex-col space-y-md pt-xl border-t border-blueprint/30">
-            <button @click="appStore.toggleSketchMode; closeMenu();" :class="[
-              'mode-toggle text-body uppercase tracking-wider px-lg py-md border transition-all duration-250',
-              appStore.isSketchMode
-                ? 'bg-annotation text-canvas border-annotation'
-                : 'bg-transparent text-blueprint border-blueprint'
-            ]">
-              {{ appStore.isSketchMode ? 'EXIT SKETCH MODE' : 'SKETCH MODE' }}
-            </button>
-            <button @click="appStore.toggleNotebookMode; closeMenu();" :class="[
-              'mode-toggle text-body uppercase tracking-wider px-lg py-md border transition-all duration-250',
-              appStore.isNotebookMode
-                ? 'bg-annotation text-canvas border-annotation'
-                : 'bg-transparent text-blueprint border-blueprint'
-            ]">
-              {{ appStore.isNotebookMode ? 'EXIT NOTEBOOK MODE' : 'NOTEBOOK MODE' }}
+          <!-- Mobile Theme Toggle -->
+          <div class="flex justify-center pt-xl border-t border-blueprint/30">
+            <button 
+              @click="toggleTheme; closeMenu();" 
+              :class="[
+                'theme-toggle flex items-center gap-3 text-body uppercase tracking-wider px-lg py-md border transition-all duration-250',
+                appStore.isDarkMode
+                  ? 'bg-annotation text-canvas border-annotation'
+                  : 'bg-transparent text-blueprint border-blueprint'
+              ]"
+            >
+              <!-- Sun Icon (Light Mode) -->
+              <svg 
+                v-if="!appStore.isDarkMode"
+                class="w-5 h-5" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <circle cx="12" cy="12" r="5"></circle>
+                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path>
+              </svg>
+              
+              <!-- Moon Icon (Dark Mode) -->
+              <svg 
+                v-else
+                class="w-5 h-5" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+              </svg>
+              
+              <span>{{ appStore.isDarkMode ? 'AYDINLIK MODA GEÇ' : 'KARANLIK MODA GEÇ' }}</span>
             </button>
           </div>
         </div>
@@ -135,6 +172,11 @@ const toggleMenu = () => {
 
 const closeMenu = () => {
   isMenuOpen.value = false;
+};
+
+const toggleTheme = () => {
+  appStore.toggleDarkMode();
+  appStore.saveTheme();
 };
 </script>
 
