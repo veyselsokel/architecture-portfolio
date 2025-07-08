@@ -1,35 +1,35 @@
 <template>
   <nav class="fixed top-0 left-0 right-0 z-50 bg-canvas/90 backdrop-blur-sm border-b border-blueprint/20 font-architect">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16">
+    <div class="w-full px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16 lg:h-20 xl:h-24 max-w-none">
         <!-- Logo/Brand -->
         <div class="flex-shrink-0">
           <router-link 
             to="/" 
-            class="text-xl font-bold text-ink hover:text-annotation transition-colors duration-300"
+            class="text-2xl lg:text-3xl xl:text-4xl font-black text-ink hover:text-annotation transition-colors duration-300"
           >
             ATÖLYE
           </router-link>
         </div>
 
         <!-- Desktop Navigation -->
-        <div class="hidden md:block">
-          <div class="ml-10 flex items-baseline space-x-8">
+        <div class="hidden md:block flex-1">
+          <div class="flex items-baseline justify-center space-x-4 lg:space-x-8 xl:space-x-12">
             <router-link
               to="/projects"
-              class="nav-link text-ink hover:text-annotation px-3 py-2 text-sm font-medium transition-colors duration-300"
+              class="nav-link text-ink hover:text-annotation px-2 lg:px-3 xl:px-4 py-2 text-base lg:text-lg font-semibold transition-colors duration-300"
             >
               PROJELER
             </router-link>
             <router-link
               to="/about"
-              class="nav-link text-ink hover:text-annotation px-3 py-2 text-sm font-medium transition-colors duration-300"
+              class="nav-link text-ink hover:text-annotation px-2 lg:px-3 xl:px-4 py-2 text-base lg:text-lg font-semibold transition-colors duration-300"
             >
               HAKKIMDA
             </router-link>
             <router-link
               to="/contact"
-              class="nav-link text-ink hover:text-annotation px-3 py-2 text-sm font-medium transition-colors duration-300"
+              class="nav-link text-ink hover:text-annotation px-2 lg:px-3 xl:px-4 py-2 text-base lg:text-lg font-semibold transition-colors duration-300"
             >
               İLETİŞİM
             </router-link>
@@ -41,15 +41,15 @@
           <button 
             @click="toggleTheme"
             :class="[
-              'flex items-center gap-2 px-4 py-2 border rounded-md text-xs font-medium uppercase tracking-wider transition-all duration-300',
+              'flex items-center gap-1 lg:gap-2 xl:gap-3 px-2 lg:px-4 xl:px-5 py-2 border rounded-md text-sm lg:text-base font-semibold uppercase tracking-wider transition-all duration-300',
               appStore.isDarkMode
                 ? 'bg-annotation text-canvas border-annotation hover:bg-annotation/80'
-                : 'bg-transparent text-blueprint border-blueprint hover:border-annotation hover:text-annotation'
+                : 'bg-canvas/50 text-ink border-blueprint hover:border-annotation hover:text-annotation hover:bg-annotation/10'
             ]"
           >
-            <Sun v-if="!appStore.isDarkMode" class="w-4 h-4" />
-            <Moon v-else class="w-4 h-4" />
-            <span>{{ appStore.isDarkMode ? 'KARANLIK' : 'AYDINLIK' }}</span>
+            <Sun v-if="!appStore.isDarkMode" class="w-4 h-4 xl:w-5 xl:h-5" />
+            <Moon v-else class="w-4 h-4 xl:w-5 xl:h-5" />
+            <span class="hidden lg:inline">{{ appStore.isDarkMode ? 'KARANLIK' : 'AYDINLIK' }}</span>
           </button>
         </div>
 
@@ -57,10 +57,10 @@
         <div class="md:hidden">
           <button
             @click="toggleMenu"
-            class="inline-flex items-center justify-center p-2 rounded-md text-ink hover:text-annotation hover:bg-canvas/50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-annotation transition-colors duration-300"
+            class="inline-flex items-center justify-center p-3 rounded-lg text-ink hover:text-annotation hover:bg-blueprint/8 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-annotation transition-colors duration-300 min-w-[44px] min-h-[44px]"
             :aria-expanded="isMenuOpen"
+            :aria-label="isMenuOpen ? 'Menüyü kapat' : 'Menüyü aç'"
           >
-            <span class="sr-only">{{ isMenuOpen ? 'Menüyü kapat' : 'Menüyü aç' }}</span>
             <Menu v-if="!isMenuOpen" class="w-6 h-6" />
             <X v-else class="w-6 h-6" />
           </button>
@@ -79,27 +79,27 @@
     >
       <div 
         v-if="isMenuOpen" 
-        class="md:hidden absolute top-full left-0 right-0 bg-canvas/95 backdrop-blur-md border-b border-blueprint/20 shadow-lg"
+        class="md:hidden absolute top-full left-0 right-0 bg-canvas border-b border-blueprint/20 shadow-lg"
       >
         <div class="px-2 pt-2 pb-3 space-y-1">
           <router-link
             to="/projects"
             @click="closeMenu"
-            class="mobile-nav-link block px-3 py-2 text-base font-medium text-ink hover:text-annotation hover:bg-canvas/50 rounded-md transition-colors duration-300"
+            class="mobile-nav-link flex items-center px-4 py-3 text-lg font-semibold text-ink hover:text-annotation hover:bg-blueprint/8 rounded-lg transition-colors duration-300 min-h-[44px]"
           >
             PROJELER
           </router-link>
           <router-link
             to="/about"
             @click="closeMenu"
-            class="mobile-nav-link block px-3 py-2 text-base font-medium text-ink hover:text-annotation hover:bg-canvas/50 rounded-md transition-colors duration-300"
+            class="mobile-nav-link flex items-center px-4 py-3 text-lg font-semibold text-ink hover:text-annotation hover:bg-blueprint/8 rounded-lg transition-colors duration-300 min-h-[44px]"
           >
             HAKKIMDA
           </router-link>
           <router-link
             to="/contact"
             @click="closeMenu"
-            class="mobile-nav-link block px-3 py-2 text-base font-medium text-ink hover:text-annotation hover:bg-canvas/50 rounded-md transition-colors duration-300"
+            class="mobile-nav-link flex items-center px-4 py-3 text-lg font-semibold text-ink hover:text-annotation hover:bg-blueprint/8 rounded-lg transition-colors duration-300 min-h-[44px]"
           >
             İLETİŞİM
           </router-link>
@@ -110,10 +110,10 @@
           <button 
             @click="toggleTheme"
             :class="[
-              'w-full flex items-center justify-center gap-2 mt-3 px-4 py-2 border rounded-md text-sm font-medium uppercase tracking-wider transition-all duration-300',
+              'w-full flex items-center justify-center gap-2 mt-3 px-4 py-2 border rounded-md text-base font-semibold uppercase tracking-wider transition-all duration-300',
               appStore.isDarkMode
                 ? 'bg-annotation text-canvas border-annotation'
-                : 'bg-transparent text-blueprint border-blueprint hover:border-annotation hover:text-annotation'
+                : 'bg-canvas/50 text-ink border-blueprint hover:border-annotation hover:text-annotation hover:bg-annotation/10'
             ]"
           >
             <Sun v-if="!appStore.isDarkMode" class="w-4 h-4" />
@@ -190,20 +190,43 @@ const toggleTheme = () => {
 
 .mobile-nav-link.router-link-active {
   color: var(--color-annotation);
-  background-color: var(--color-canvas);
+  background-color: rgba(100, 116, 139, 0.1);
 }
 
 /* Removed hamburger and icon CSS as we're using Lucide icons directly */
 
 /* Responsive adjustments */
+@media (min-width: 1920px) {
+  .nav-link {
+    font-size: 1.125rem;
+    padding: 0.75rem 1.5rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .nav-link {
+    font-size: 0.875rem;
+  }
+}
+
 @media (max-width: 768px) {
   .mobile-nav-link {
     font-size: 0.9rem;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .nav-link {
+    font-size: 0.85rem;
+  }
+  
+  .mobile-nav-link {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-nav-link {
     font-size: 0.85rem;
   }
 }

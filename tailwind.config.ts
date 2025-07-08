@@ -12,18 +12,18 @@ export default {
       },
       colors: {
         // The Architect's Digital Atelier Color Palette
-        'canvas': '#F4F4F1',
-        'ink': '#1A1A1A', 
-        'blueprint': '#6B7A8F',
-        'annotation': '#C85A3A',
+        'canvas': '#EFE4D2',
+        'ink': '#3D2914', 
+        'blueprint': '#64748B',
+        'annotation': '#D97706',
         
         // Backwards compatibility
-        'primary-background': '#F4F4F1',
-        'primary-text': '#1A1A1A',
-        'accent-line': '#6B7A8F',
-        'interactive-hover': '#C85A3A',
-        'secondary-background': '#F4F4F1',
-        'muted-text': '#6B7A8F',
+        'primary-background': '#EFE4D2',
+        'primary-text': '#3D2914',
+        'accent-line': '#64748B',
+        'interactive-hover': '#D97706',
+        'secondary-background': '#EFE4D2',
+        'muted-text': '#64748B',
       },
       fontSize: {
         'caption': ['0.75rem', { lineHeight: '1.5', letterSpacing: '0.05em' }],
@@ -77,7 +77,7 @@ export default {
         },
       },
       backgroundImage: {
-        'blueprint-grid': 'linear-gradient(rgba(107, 122, 143, 0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(107, 122, 143, 0.08) 1px, transparent 1px)',
+        'blueprint-grid': 'linear-gradient(rgba(100, 116, 139, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(100, 116, 139, 0.06) 1px, transparent 1px)',
       },
       backgroundSize: {
         'grid': '25px 25px',

@@ -71,7 +71,17 @@
 
 <script setup lang="ts">
 import { ArrowRight } from 'lucide-vue-next';
-// Pure presentation component - no reactive state needed
+import { onMounted, onUnmounted } from 'vue';
+
+// Add homepage class to body when component mounts
+onMounted(() => {
+  document.body.classList.add('homepage');
+});
+
+// Remove homepage class when component unmounts
+onUnmounted(() => {
+  document.body.classList.remove('homepage');
+});
 </script>
 
 <style scoped>
