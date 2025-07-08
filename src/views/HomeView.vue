@@ -49,10 +49,7 @@
           <router-link to="/projects"
             class="entry-button inline-flex items-center gap-md px-xl py-lg border border-ink text-ink hover:border-annotation hover:text-annotation transition-all duration-250 ease-architect group float">
             <span class="uppercase tracking-wider">Projeleri Keşfet</span>
-            <svg class="w-5 h-5 transition-transform duration-250 group-hover:translate-x-1" fill="none"
-              stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
+            <ArrowRight class="w-5 h-5 transition-transform duration-250 group-hover:translate-x-1" />
           </router-link>
         </div>
       </div>
@@ -73,6 +70,7 @@
 </template>
 
 <script setup lang="ts">
+import { ArrowRight } from 'lucide-vue-next';
 // Pure presentation component - no reactive state needed
 </script>
 

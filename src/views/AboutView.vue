@@ -36,12 +36,15 @@
             <h2 class="h2 text-ink mb-lg slide-in-right delay-600">TASARIM FİLOZOFİSİ</h2>
             <div class="space-y-lg">
               <p class="body-text text-ink leading-relaxed slide-up delay-700">
-                2003 yılında İstanbul'da doğdum ve memleketim Denizli'dir. Haliç Üniversitesi Mimarlık bölümünden mezun oldum.
+                2003 yılında İstanbul'da doğdum ve memleketim Denizli'dir. Haliç Üniversitesi Mimarlık bölümünden mezun
+                oldum.
                 Mimarlık, insanların yaşam kalitesini yükseltecek mekanlar yaratma sanatıdır.
               </p>
               <p class="body-text text-ink leading-relaxed slide-up delay-800">
-                Her proje, derinlemesine bir bağlam analizle başlar ve sürdürülebilirlik, işlevselliğin ve estetik değerlerin
-                uyumu ile devam eder. Tasarim sürecimde geleneksel zanaatçılık ile çağdaş teknolojinin birleşiminden güç alırım.
+                Her proje, derinlemesine bir bağlam analizle başlar ve sürdürülebilirlik, işlevselliğin ve estetik
+                değerlerin
+                uyumu ile devam eder. Tasarim sürecimde geleneksel zanaatçılık ile çağdaş teknolojinin birleşiminden güç
+                alırım.
               </p>
               <p class="body-text text-ink leading-relaxed slide-up delay-900">
                 Udemy üzerinden mesleki kurslar alarak kendimi geliştirdim ve English Time'da İngilizce eğitimi aldım.
@@ -126,9 +129,7 @@
         <router-link to="/contact"
           class="inline-flex items-center gap-sm px-xl py-lg border border-ink text-ink hover:border-annotation hover:text-annotation transition-all duration-250 ease-architect bounce-in float delay-1000">
           <span class="h3">İLETİŞİME GEÇ</span>
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
+          <ArrowRight class="w-5 h-5" />
         </router-link>
       </footer>
     </div>
@@ -138,6 +139,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import DottedDivider from '@/components/DottedDivider.vue';
+import { ArrowRight } from 'lucide-vue-next';
 
 const timeline = ref([
   {

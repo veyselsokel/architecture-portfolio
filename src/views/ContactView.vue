@@ -96,12 +96,8 @@
               <span class="h3 mb-0">
                 {{ isSubmitting ? 'GÖNDERİLİYOR...' : 'MESAJ GÖNDER' }}
               </span>
-              <svg v-if="!isSubmitting" class="w-5 h-5 transition-transform duration-250 group-hover:translate-x-1"
-                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
-                  d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-              </svg>
-              <div v-else class="w-5 h-5 border border-current border-t-transparent rounded-full animate-spin"></div>
+              <Send v-if="!isSubmitting" class="w-5 h-5 transition-transform duration-250 group-hover:translate-x-1" />
+              <Loader2 v-else class="w-5 h-5 animate-spin" />
             </button>
           </div>
         </form>
@@ -170,9 +166,7 @@
         <div class="max-w-md w-full text-center">
           <div class="bg-canvas border border-annotation p-2xl">
             <div class="w-16 h-16 bg-annotation rounded-full mx-auto mb-lg flex items-center justify-center">
-              <svg class="w-8 h-8 text-canvas" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
+              <Check class="w-8 h-8 text-canvas" />
             </div>
             <h3 class="h3 text-ink mb-md">MESAJ GÖNDERİLDİ</h3>
             <p class="body-text text-ink mb-lg">
@@ -186,12 +180,36 @@
         </div>
       </div>
     </transition>
+
+    <!-- Error Message Overlay -->
+    <transition name="error-overlay">
+      <div v-if="showError"
+        class="fixed inset-0 bg-ink/90 backdrop-blur-sm z-50 flex items-center justify-center p-lg">
+        <div class="max-w-md w-full text-center">
+          <div class="bg-canvas border border-red-500 p-2xl">
+            <div class="w-16 h-16 bg-red-500 rounded-full mx-auto mb-lg flex items-center justify-center">
+              <X class="w-8 h-8 text-canvas" />
+            </div>
+            <h3 class="h3 text-ink mb-md">MESAJ GÖNDERİLEMEDİ</h3>
+            <p class="body-text text-ink mb-lg">
+              {{ errorMessage }}
+            </p>
+            <button @click="closeError"
+              class="px-lg py-md border border-red-500 text-red-500 hover:bg-red-500 hover:text-canvas transition-all duration-250">
+              <span class="meta-data">TAMAM</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import emailjs from '@emailjs/browser';
 import DottedDivider from '@/components/DottedDivider.vue';
+import { Send, Loader2, Check, X } from 'lucide-vue-next';
 
 const form = ref({
   name: '',
@@ -203,6 +221,8 @@ const form = ref({
 const activeField = ref<string | null>(null);
 const isSubmitting = ref(false);
 const showSuccess = ref(false);
+const showError = ref(false);
+const errorMessage = ref('');
 
 const focusField = (fieldName: string) => {
   activeField.value = fieldName;
@@ -216,26 +236,60 @@ const blurField = (fieldName: string) => {
 
 const submitForm = async () => {
   isSubmitting.value = true;
+  showError.value = false;
+  errorMessage.value = '';
 
-  // Simulate form submission
-  await new Promise(resolve => setTimeout(resolve, 2000));
+  try {
+    // EmailJS configuration from environment variables
+    const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-  console.log('Form submitted:', form.value);
+    // Check if EmailJS is configured
+    if (!serviceID || !templateID || !publicKey || publicKey === 'YOUR_PUBLIC_KEY_HERE') {
+      throw new Error('EmailJS not configured. Please check your environment variables.');
+    }
 
-  // Reset form
-  form.value = {
-    name: '',
-    email: '',
-    projectType: '',
-    message: '',
-  };
+    // Prepare template parameters
+    const templateParams = {
+      from_name: form.value.name,
+      from_email: form.value.email,
+      project_type: form.value.projectType,
+      message: form.value.message,
+      to_name: 'Seyma Betül Sökemiş',
+      to_email: 'seymabetulsokel@gmail.com'
+    };
 
-  isSubmitting.value = false;
-  showSuccess.value = true;
+    // Send email
+    const response = await emailjs.send(serviceID, templateID, templateParams, publicKey);
+
+    if (response.status === 200) {
+      // Reset form on success
+      form.value = {
+        name: '',
+        email: '',
+        projectType: '',
+        message: '',
+      };
+      showSuccess.value = true;
+    } else {
+      throw new Error('Email sending failed');
+    }
+  } catch (error) {
+    console.error('Email sending error:', error);
+    errorMessage.value = 'Mesaj gönderilemedi. Lütfen tekrar deneyin veya doğrudan iletişim kanallarını kullanın.';
+    showError.value = true;
+  } finally {
+    isSubmitting.value = false;
+  }
 };
 
 const closeSuccess = () => {
   showSuccess.value = false;
+};
+
+const closeError = () => {
+  showError.value = false;
 };
 </script>
 
@@ -318,6 +372,18 @@ select.field-input:focus {
 
 .success-overlay-enter-from,
 .success-overlay-leave-to {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+/* Error Overlay Transitions */
+.error-overlay-enter-active,
+.error-overlay-leave-active {
+  transition: all 0.4s ease;
+}
+
+.error-overlay-enter-from,
+.error-overlay-leave-to {
   opacity: 0;
   transform: scale(0.9);
 }

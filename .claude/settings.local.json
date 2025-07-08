@@ -3,7 +3,9 @@
     "allow": [
       "Bash(npm audit:*)",
       "Bash(npm outdated)",
-      "Bash(npm update)"
+      "Bash(npm update)",
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)"
     ],
     "deny": []
   }

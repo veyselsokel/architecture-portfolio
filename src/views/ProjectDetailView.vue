@@ -9,9 +9,7 @@
           to="/projects"
           class="inline-flex items-center gap-sm text-blueprint hover:text-annotation transition-colors duration-250 ease-architect"
         >
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 19l-7-7 7-7"/>
-          </svg>
+          <ChevronLeft class="w-4 h-4" />
           <span class="meta-data uppercase tracking-wider">Return to Gallery</span>
         </router-link>
       </nav>
@@ -225,9 +223,7 @@
               class="nav-button flex items-center gap-sm text-blueprint hover:text-annotation disabled:opacity-30 disabled:cursor-not-allowed transition-colors duration-250"
             >
               <span class="meta-data">NEXT PROJECT</span>
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 5l7 7-7 7"/>
-              </svg>
+              <ChevronRight class="w-4 h-4" />
             </button>
           </div>
         </nav>
@@ -265,9 +261,7 @@
               @click="closeFocusMode"
               class="text-canvas hover:text-annotation transition-colors duration-250"
             >
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M6 18L18 6M6 6l12 12"/>
-              </svg>
+              <X class="w-6 h-6" />
             </button>
           </header>
           
@@ -288,6 +282,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
 import { useRoute, useRouter, RouterLink } from 'vue-router';
+import { ChevronLeft, ChevronRight, X } from 'lucide-vue-next';
 
 interface ProjectDetail {
   id: number;
