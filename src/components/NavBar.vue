@@ -127,7 +127,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
 import { useAppStore } from '@/stores/app';
 import { Sun, Moon, Menu, X } from 'lucide-vue-next';

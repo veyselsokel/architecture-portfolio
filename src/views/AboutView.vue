@@ -20,7 +20,7 @@
         <div class="portrait-section scale-in delay-400">
           <div class="image-frame border border-blueprint bg-canvas p-md mb-lg">
             <img src="https://via.placeholder.com/600x800/6B7A8F/F4F4F1?text=ARCHITECT+PORTRAIT"
-              alt="Architect Portrait"
+              alt="Mimar Portresi"
               class="w-full h-auto object-cover filter grayscale hover:grayscale-0 transition-all duration-500 ease-architect" />
           </div>
           <div class="meta-data text-blueprint text-center pulse-slow">
