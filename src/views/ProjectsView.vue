@@ -120,8 +120,8 @@ const projects = ref<Project[]>([
     year: 2024,
     category: 'AKADEMIK',
     location: 'İSTANBUL',
-    image: '/images/2-proje-5-secilen/Ekran görüntüsü 2025-07-11 124606.png',
-    sketchImage: '/images/2-proje-5-secilen/arazi proje 5 PHOTOSHOP_page-0001 (1).jpg'
+    image: '/images/2-proje-5-secilen/ekran-goruntusu-2025-07-11-124606.png',
+    sketchImage: '/images/2-proje-5-secilen/arazi-proje-5-photoshop_page-0001-(1).jpg'
   },
   {
     id: 3,
@@ -129,8 +129,8 @@ const projects = ref<Project[]>([
     year: 2024,
     category: 'AKADEMIK',
     location: 'İSTANBUL',
-    image: '/images/3-proje-4-secilenler/Ekran görüntüsü 2025-07-11 124052.png',
-    sketchImage: '/images/3-proje-4-secilenler/Ekran görüntüsü 2025-07-11 123917.png'
+    image: '/images/3-proje-4-secilenler/ekran-goruntusu-2025-07-11-124052.png',
+    sketchImage: '/images/3-proje-4-secilenler/ekran-goruntusu-2025-07-11-123917.png'
   },
   {
     id: 4,
@@ -138,8 +138,8 @@ const projects = ref<Project[]>([
     year: 2024,
     category: 'DETAY',
     location: 'İSTANBUL',
-    image: '/images/4-up-secilenler/UP MERDİVEN KESİTİ1-Model_page-0001.jpg',
-    sketchImage: '/images/4-up-secilenler/UP KISMİ PLAN-Model_page-0001.jpg'
+    image: '/images/4-up-secilenler/up-merdiven-kesiti1-model_page-0001.jpg',
+    sketchImage: '/images/4-up-secilenler/up-kismi-plan-model_page-0001.jpg'
   },
   {
     id: 5,
@@ -147,8 +147,8 @@ const projects = ref<Project[]>([
     year: 2023,
     category: 'AKADEMIK',
     location: 'İSTANBUL',
-    image: '/images/5-proje-3-secilenler/cc_1 - Photo.png',
-    sketchImage: '/images/5-proje-3-secilenler/cc_2 - Photo.png'
+    image: '/images/5-proje-3-secilenler/cc_1-photo.png',
+    sketchImage: '/images/5-proje-3-secilenler/cc_2-photo.png'
   },
   {
     id: 6,
@@ -156,8 +156,8 @@ const projects = ref<Project[]>([
     year: 2023,
     category: 'AKADEMIK',
     location: 'İSTANBUL',
-    image: '/images/6-proje-2-secilenler/3D RENDER_6 - Photo_Lighting.jpg',
-    sketchImage: '/images/6-proje-2-secilenler/SUNUM PAFTASI.png'
+    image: '/images/6-proje-2-secilenler/3d-render_6-photo_lighting.jpg',
+    sketchImage: '/images/6-proje-2-secilenler/sunum-paftasi.png'
   },
   {
     id: 7,
@@ -165,8 +165,8 @@ const projects = ref<Project[]>([
     year: 2023,
     category: 'AKADEMIK',
     location: 'İSTANBUL',
-    image: '/images/7-proje-1-secilenler/WhatsApp Image 2023-01-04 at 11.32.28 PM (2).jpeg',
-    sketchImage: '/images/7-proje-1-secilenler/proje 1 ARAZİ-Model_page-0001.jpg'
+    image: '/images/7-proje-1-secilenler/whatsapp-image-2023-01-04-at-11.32.28-pm-(2).jpeg',
+    sketchImage: '/images/7-proje-1-secilenler/proje-1-arazi-model_page-0001.jpg'
   },
   {
     id: 8,
@@ -183,8 +183,8 @@ const projects = ref<Project[]>([
     year: 2025,
     category: 'STAJ',
     location: 'İSTANBUL',
-    image: '/images/9-ofis-staji-secilenler/WhatsApp Görsel 2025-07-08 saat 15.21.58_4312c4db.jpg',
-    sketchImage: '/images/9-ofis-staji-secilenler/WhatsApp Görsel 2025-07-08 saat 15.21.56_e5961c7d.jpg'
+    image: '/images/9-ofis-staji-secilenler/whatsapp-gorsel-2025-07-08-saat-15.21.58_4312c4db.jpg',
+    sketchImage: '/images/9-ofis-staji-secilenler/whatsapp-gorsel-2025-07-08-saat-15.21.56_e5961c7d.jpg'
   },
 ]);
 
