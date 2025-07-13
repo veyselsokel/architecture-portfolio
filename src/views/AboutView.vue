@@ -36,19 +36,17 @@
             <h2 class="h2 text-ink mb-lg slide-in-right delay-600">TASARIM FİLOZOFİSİ</h2>
             <div class="space-y-lg">
               <p class="body-text text-ink leading-relaxed slide-up delay-700">
-                2003 yılında İstanbul'da doğdum ve memleketim Denizli'dir. Haliç Üniversitesi Mimarlık bölümünden mezun
-                oldum.
+                2003 yılında İstanbul'da doğdum. Memleketim Denizli'dir. Haliç Üniversitesi Mimarlık bölümünden 3.29 genel ortalama ile mezun oldum.
                 Mimarlık, insanların yaşam kalitesini yükseltecek mekanlar yaratma sanatıdır.
               </p>
               <p class="body-text text-ink leading-relaxed slide-up delay-800">
                 Her proje, derinlemesine bir bağlam analizle başlar ve sürdürülebilirlik, işlevselliğin ve estetik
-                değerlerin
-                uyumu ile devam eder. Tasarim sürecimde geleneksel zanaatçılık ile çağdaş teknolojinin birleşiminden güç
+                değerlerin uyumu ile devam eder. Tasarım sürecimde geleneksel zanaatçılık ile çağdaş teknolojinin birleşiminden güç
                 alırım.
               </p>
               <p class="body-text text-ink leading-relaxed slide-up delay-900">
                 Udemy üzerinden mesleki kurslar alarak kendimi geliştirdim ve English Time'da İngilizce eğitimi aldım.
-                B1 seviyesinde İngilizce bilgim ve 3.29 genel ortalamam ile mezun oldum.
+                B1 seviyesinde İngilizce bilgim ve çeşitli yazılım araçlarında uzmanlığım bulunmaktadır.
               </p>
             </div>
           </div>
@@ -143,19 +141,19 @@ import { ArrowRight } from 'lucide-vue-next';
 
 const timeline = ref([
   {
-    year: '2021',
+    year: '2021-2025',
     title: 'MİMARLIK EĞİTİMİ',
-    description: 'Haliç Üniversitesi Mimarlık Fakültesi\'nde eğitime başladım. Mimarlıkın temel prensipleri ve tasarım süreçlerini öğrendim.',
+    description: 'Haliç Üniversitesi Mimarlık Fakültesi\'nde eğitim aldım. 3.29 genel ortalama ile mezun oldum. Mimarlıkın temel prensipleri ve tasarım süreçlerini öğrendim.',
   },
   {
-    year: '2022',
-    title: 'OFS STAJI - ŞAT MİMARLIK',
-    description: 'Proje aşamaları hakkında deneyim sahibi oldum. Belediyedeki iş süreçlerini pratikte öğrendim ve profesyonel çalışma ortamına adım attım.',
+    year: '2023',
+    title: 'OFİS STAJI - ŞAT MİMARLIK',
+    description: 'Proje aşamaları hakkında deneyim kazandım. Belediyedeki iş süreçlerini uygulamalı olarak öğrendim ve profesyonel çalışma ortamına adım attım.',
   },
   {
     year: '2023',
     title: 'ŞANTİYE STAJI - ÇELİK MİMARLIK',
-    description: '7 bloktan oluşan sitenin kaba inşaatında bulundum. Beton döküm standartlarını ve çelik bağlantı yöntemlerini öğrendim.',
+    description: '7 bloktan oluşan bir sitenin kaba inşaat sürecinde yer aldım. Beton standartlarını, döküm sırasında dikkat edilmesi gerekenleri ve çelik bağlantılarının nasıl yapıldığını öğrendim.',
   },
   {
     year: '2024',
@@ -164,22 +162,17 @@ const timeline = ref([
   },
   {
     year: '2025',
-    title: 'BİTİRME PROJESİ',
-    description: 'Agrotopia Kentsel Tarım projesi ile mezuniyet tezimi tamamladım. Sürdürülebilir kentsel tarım modeli geliştirdim.',
-  },
-  {
-    year: '2025',
-    title: 'DİJİTAL PORTFOLYO',
-    description: 'Modern web teknolojileri ile dijital portfolyoıumu hayata geçirdim. Projelerimi ve deneyimlerimi dijital ortamda sergilemeye başladım.',
+    title: 'BİTİRME PROJESİ - AGROTOPIA',
+    description: 'Agrotopia Kentsel Tarım Projesi ile mezuniyet tezimi tamamladım. Yerel kaynakları destekleyerek kentsel ve kırsal yaşamı bütünleştiren sürdürülebilir bir kentsel tarım modeli geliştirdim.',
   },
 ]);
 
 const skills = ref([
-  '3DS MAX',
-  'SKETCHUP',
   'AUTOCAD',
-  'ADOBE INDESIGN',
+  '3DS MAX', 
   'ADOBE PHOTOSHOP',
+  'SKETCHUP',
+  'ADOBE INDESIGN',
   'LUMION',
   'V-RAY',
   'REVIT',
@@ -211,8 +204,8 @@ const recognitions = ref([
   },
   {
     year: '2023',
-    title: 'ŞANTİYE DENEYIMİ',
-    description: 'Çelik Mimarlık\'ta yaptığım staj ile inşaat sektöründe pratik deneyim kazandım.',
+    title: 'ŞANTİYE VE OFİS STAJ DENEYİMİ',
+    description: 'Çelik Mimarlık ve Şat Mimarlık\'ta yaptığım stajlar ile hem sahada hem ofiste pratik deneyim kazandım.',
   },
 ]);
 </script>

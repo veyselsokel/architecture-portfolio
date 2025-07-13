@@ -256,7 +256,7 @@ const submitForm = async () => {
       from_email: form.value.email,
       project_type: form.value.projectType,
       message: form.value.message,
-      to_name: 'Seyma Betül Sökemiş',
+      to_name: 'Şeyma Betül Sökel',
       to_email: 'seymabetulsokel@gmail.com'
     };
 

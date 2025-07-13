@@ -13,27 +13,6 @@
 
       <DottedDivider />
 
-      <!-- Sorting Controls -->
-      <div class="flex justify-center mb-3xl scale-in delay-400">
-        <div class="inline-flex border border-blueprint">
-          <button @click="sortBy = 'chronology'" :class="[
-            'px-lg py-sm text-caption uppercase tracking-wider transition-all duration-250 ease-architect',
-            sortBy === 'chronology'
-              ? 'bg-annotation text-canvas border-annotation'
-              : 'bg-canvas text-blueprint hover:text-annotation hover:bg-annotation/5'
-          ]">
-            KRONOLOJİK
-          </button>
-          <button @click="sortBy = 'category'" :class="[
-            'px-lg py-sm text-caption uppercase tracking-wider border-l border-blueprint transition-all duration-250 ease-architect',
-            sortBy === 'category'
-              ? 'bg-annotation text-canvas border-annotation'
-              : 'bg-canvas text-blueprint hover:text-annotation hover:bg-annotation/5'
-          ]">
-            KATEGORİ
-          </button>
-        </div>
-      </div>
 
       <!-- Projects Grid -->
       <div class="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-xl">
@@ -107,33 +86,42 @@ const router = useRouter();
 const projects = ref<Project[]>([
   {
     id: 1,
-    title: 'BİTİRME PROJESİ',
+    title: 'AGROTOPIA KENTSEL TARIM PROJESİ',
     year: 2025,
-    category: 'MEZUNIYET',
+    category: 'BİTİRME PROJESİ',
     location: 'İSTANBUL',
     image: '/images/1-bitirme-secilenler/1_render.jpg',
     sketchImage: '/images/1-bitirme-secilenler/5_teknik.jpg'
   },
   {
     id: 2,
-    title: 'PROJE 5',
+    title: 'ÖZEL EĞİTİM REHABİLİTASYON MERKEZİ',
     year: 2024,
-    category: 'AKADEMIK',
+    category: 'PROJE 5',
     location: 'İSTANBUL',
     image: '/images/2-proje-5-secilen/ekran-goruntusu-2025-07-11-124606.png',
     sketchImage: '/images/2-proje-5-secilen/arazi-proje-5-photoshop_page-0001-(1).jpg'
   },
   {
     id: 3,
-    title: 'PROJE 4',
+    title: 'OFİS STAJI - ŞAT MİMARLIK',
+    year: 2023,
+    category: 'STAJ',
+    location: 'İSTANBUL',
+    image: '/images/9-ofis-staji-secilenler/whatsapp-gorsel-2025-07-08-saat-15.21.58_4312c4db.jpg',
+    sketchImage: '/images/9-ofis-staji-secilenler/whatsapp-gorsel-2025-07-08-saat-15.21.56_e5961c7d.jpg'
+  },
+  {
+    id: 4,
+    title: 'KONAKLAMA KOMPLEKSİ',
     year: 2024,
-    category: 'AKADEMIK',
+    category: 'PROJE 4',
     location: 'İSTANBUL',
     image: '/images/3-proje-4-secilenler/ekran-goruntusu-2025-07-11-124052.png',
     sketchImage: '/images/3-proje-4-secilenler/ekran-goruntusu-2025-07-11-123917.png'
   },
   {
-    id: 4,
+    id: 5,
     title: 'UP MİMARİ DETAY',
     year: 2024,
     category: 'DETAY',
@@ -142,35 +130,17 @@ const projects = ref<Project[]>([
     sketchImage: '/images/4-up-secilenler/up-kismi-plan-model_page-0001.jpg'
   },
   {
-    id: 5,
-    title: 'PROJE 3',
+    id: 6,
+    title: 'HALİÇ SURLARININ TANITILMASI',
     year: 2023,
-    category: 'AKADEMIK',
+    category: 'PROJE 3',
     location: 'İSTANBUL',
     image: '/images/5-proje-3-secilenler/cc_1-photo.png',
     sketchImage: '/images/5-proje-3-secilenler/cc_2-photo.png'
   },
   {
-    id: 6,
-    title: 'PROJE 2 - YEMEKHANE',
-    year: 2023,
-    category: 'AKADEMIK',
-    location: 'İSTANBUL',
-    image: '/images/6-proje-2-secilenler/3d-render_6-photo_lighting.jpg',
-    sketchImage: '/images/6-proje-2-secilenler/sunum-paftasi.png'
-  },
-  {
     id: 7,
-    title: 'PROJE 1 - TARİHİ YAPI',
-    year: 2023,
-    category: 'AKADEMIK',
-    location: 'İSTANBUL',
-    image: '/images/7-proje-1-secilenler/whatsapp-image-2023-01-04-at-11.32.28-pm-(2).jpeg',
-    sketchImage: '/images/7-proje-1-secilenler/proje-1-arazi-model_page-0001.jpg'
-  },
-  {
-    id: 8,
-    title: 'ŞANTİYE STAJI',
+    title: 'ŞANTİYE STAJI - ÇELİK MİMARLIK',
     year: 2023,
     category: 'STAJ',
     location: 'İSTANBUL',
@@ -178,26 +148,28 @@ const projects = ref<Project[]>([
     sketchImage: '/images/8-santiye-staji-secilen/IMG_20230701_104841.jpg'
   },
   {
-    id: 9,
-    title: 'OFİS STAJI',
-    year: 2025,
-    category: 'STAJ',
+    id: 8,
+    title: 'AFET SONRASI YAŞAM ALANI',
+    year: 2023,
+    category: 'PROJE 2',
     location: 'İSTANBUL',
-    image: '/images/9-ofis-staji-secilenler/whatsapp-gorsel-2025-07-08-saat-15.21.58_4312c4db.jpg',
-    sketchImage: '/images/9-ofis-staji-secilenler/whatsapp-gorsel-2025-07-08-saat-15.21.56_e5961c7d.jpg'
+    image: '/images/6-proje-2-secilenler/3d-render_6-photo_lighting.jpg',
+    sketchImage: '/images/6-proje-2-secilenler/sunum-paftasi.png'
+  },
+  {
+    id: 9,
+    title: 'SANATÇI KONAKLAMASI',
+    year: 2023,
+    category: 'PROJE 1',
+    location: 'İSTANBUL',
+    image: '/images/7-proje-1-secilenler/whatsapp-image-2023-01-04-at-11.32.28-pm-(2).jpeg',
+    sketchImage: '/images/7-proje-1-secilenler/proje-1-arazi-model_page-0001.jpg'
   },
 ]);
 
-const sortBy = ref<'chronology' | 'category'>('chronology');
-
 const sortedProjects = computed(() => {
-  const sorted = [...projects.value];
-  if (sortBy.value === 'category') {
-    sorted.sort((a, b) => a.category.localeCompare(b.category));
-  } else if (sortBy.value === 'chronology') {
-    sorted.sort((a, b) => b.year - a.year); // Newest first
-  }
-  return sorted;
+  // Always return projects in the order they are defined (chronological)
+  return projects.value;
 });
 
 const navigateToProject = (projectId: number) => {
