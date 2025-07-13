@@ -102,7 +102,7 @@
       <!-- Recognition Section -->
       <section class="recognition-section mt-3xl pt-3xl border-t border-blueprint/30">
         <header class="text-center mb-2xl">
-          <h2 class="h2 text-ink mb-sm slide-in-left delay-1000">TANIŞ VE YETERLİLİK</h2>
+          <h2 class="h2 text-ink mb-sm slide-in-left delay-1000">TANINIŞ VE YETERLİLİK</h2>
           <div class="meta-data text-blueprint slide-in-right delay-1000">
             EĞİTİM, SERTİFİKALAR VE PROFESYONEL DENEYIM
           </div>
@@ -141,14 +141,14 @@ import { ArrowRight } from 'lucide-vue-next';
 
 const timeline = ref([
   {
-    year: '2021-2025',
-    title: 'MİMARLIK EĞİTİMİ',
-    description: 'Haliç Üniversitesi Mimarlık Fakültesi\'nde eğitim aldım. 3.29 genel ortalama ile mezun oldum. Mimarlıkın temel prensipleri ve tasarım süreçlerini öğrendim.',
+    year: '2021',
+    title: 'MİMARLIK EĞİTİMİNE BAŞLAMA',
+    description: 'Haliç Üniversitesi Mimarlık Fakültesi\'nde eğitime başladım. Mimarlığın temel prensipleri ve tasarım süreçlerini öğrenmeye başladım.',
   },
   {
     year: '2023',
     title: 'OFİS STAJI - ŞAT MİMARLIK',
-    description: 'Proje aşamaları hakkında deneyim kazandım. Belediyedeki iş süreçlerini uygulamalı olarak öğrendim ve profesyonel çalışma ortamına adım attım.',
+    description: 'Proje aşamaları hakkında deneyim kazandım. Belediyedeki iş süreçlerini uygulamalı olarak öğrendim.',
   },
   {
     year: '2023',
@@ -162,14 +162,14 @@ const timeline = ref([
   },
   {
     year: '2025',
-    title: 'BİTİRME PROJESİ - AGROTOPIA',
-    description: 'Agrotopia Kentsel Tarım Projesi ile mezuniyet tezimi tamamladım. Yerel kaynakları destekleyerek kentsel ve kırsal yaşamı bütünleştiren sürdürülebilir bir kentsel tarım modeli geliştirdim.',
+    title: 'MİMARLIK MEZUNU - AGROTOPIA PROJESİ',
+    description: 'Haliç Üniversitesi Mimarlık bölümünden 3.29 genel ortalama ile mezun oldum. Agrotopia Kentsel Tarım Projesi ile bitirme tezimi tamamladım.',
   },
 ]);
 
 const skills = ref([
   'AUTOCAD',
-  '3DS MAX', 
+  '3DS MAX',
   'ADOBE PHOTOSHOP',
   'SKETCHUP',
   'ADOBE INDESIGN',
