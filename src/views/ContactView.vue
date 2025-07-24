@@ -183,8 +183,7 @@
 
     <!-- Error Message Overlay -->
     <transition name="error-overlay">
-      <div v-if="showError"
-        class="fixed inset-0 bg-ink/90 backdrop-blur-sm z-50 flex items-center justify-center p-lg">
+      <div v-if="showError" class="fixed inset-0 bg-ink/90 backdrop-blur-sm z-50 flex items-center justify-center p-lg">
         <div class="max-w-md w-full text-center">
           <div class="bg-canvas border border-red-500 p-2xl">
             <div class="w-16 h-16 bg-red-500 rounded-full mx-auto mb-lg flex items-center justify-center">
@@ -210,6 +209,9 @@ import { ref } from 'vue';
 import emailjs from '@emailjs/browser';
 import DottedDivider from '@/components/DottedDivider.vue';
 import { Send, Loader2, Check, X } from 'lucide-vue-next';
+import { useSeo } from '@/composables/useSeo';
+
+useSeo('İletişim - Şeyma Betül Sökel', 'Proje işbirlikleri, danışmanlık veya diğer sorularınız için Mimar Şeyma Betül Sökel ile iletişime geçin.');
 
 const form = ref({
   name: '',

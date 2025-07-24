@@ -19,8 +19,7 @@
         <!-- Left Column: Portrait -->
         <div class="portrait-section scale-in delay-400">
           <div class="image-frame border border-blueprint bg-canvas p-md mb-lg">
-            <img src="https://via.placeholder.com/600x800/6B7A8F/F4F4F1?text=ARCHITECT+PORTRAIT"
-              alt="Mimar Portresi"
+            <img src="https://via.placeholder.com/600x800/6B7A8F/F4F4F1?text=ARCHITECT+PORTRAIT" alt="Mimar Portresi"
               class="w-full h-auto object-cover filter grayscale hover:grayscale-0 transition-all duration-500 ease-architect" />
           </div>
           <div class="meta-data text-blueprint text-center pulse-slow">
@@ -36,12 +35,14 @@
             <h2 class="h2 text-ink mb-lg slide-in-right delay-600">TASARIM FİLOZOFİSİ</h2>
             <div class="space-y-lg">
               <p class="body-text text-ink leading-relaxed slide-up delay-700">
-                2003 yılında İstanbul'da doğdum. Memleketim Denizli'dir. Haliç Üniversitesi Mimarlık bölümünden 3.29 genel ortalama ile mezun oldum.
+                2003 yılında İstanbul'da doğdum. Memleketim Denizli'dir. Haliç Üniversitesi Mimarlık bölümünden 3.29
+                genel ortalama ile mezun oldum.
                 Mimarlık, insanların yaşam kalitesini yükseltecek mekanlar yaratma sanatıdır.
               </p>
               <p class="body-text text-ink leading-relaxed slide-up delay-800">
                 Her proje, derinlemesine bir bağlam analizle başlar ve sürdürülebilirlik, işlevselliğin ve estetik
-                değerlerin uyumu ile devam eder. Tasarım sürecimde geleneksel zanaatçılık ile çağdaş teknolojinin birleşiminden güç
+                değerlerin uyumu ile devam eder. Tasarım sürecimde geleneksel zanaatçılık ile çağdaş teknolojinin
+                birleşiminden güç
                 alırım.
               </p>
               <p class="body-text text-ink leading-relaxed slide-up delay-900">
@@ -135,11 +136,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import DottedDivider from '@/components/DottedDivider.vue';
-import { ArrowRight } from 'lucide-vue-next';
-
-const timeline = ref([
+import { ref } from 'vue'; import DottedDivider from '@/components/DottedDivider.vue'; import { ArrowRight } from 'lucide-vue-next'; import { useSeo } from '@/composables/useSeo'; useSeo('Hakkımda - Şeyma Betül Sökel', 'Mimar Şeyma Betül Sökel\'in tasarım felsefesi, profesyonel süreci ve teknik uzmanlıkları hakkında daha fazla bilgi edinin.'); const timeline = ref([
   {
     year: '2021',
     title: 'MİMARLIK EĞİTİMİNE BAŞLAMA',

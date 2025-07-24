@@ -70,6 +70,9 @@
 <script setup lang="ts">
 import { ArrowRight } from 'lucide-vue-next';
 import { onMounted, onUnmounted } from 'vue';
+import { useSeo } from '@/composables/useSeo';
+
+useSeo('Şeyma Betül Sökel - Mimar ve Tasarımcı', 'Mekan ve zamanın kesişiminde yenilikçi ve estetik mimari çözümler. Şeyma Betül Sökel\'in dijital atölyesine hoş geldiniz.');
 
 // Add homepage class to body when component mounts
 onMounted(() => {

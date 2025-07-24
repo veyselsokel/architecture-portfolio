@@ -78,6 +78,10 @@ import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
 import DottedDivider from '@/components/DottedDivider.vue';
 
+import { useSeo } from '@/composables/useSeo';
+
+useSeo('Projeler - Şeyma Betül Sökel Mimarlık', 'Şeyma Betül Sökel tarafından tasarlanan, konsept ve bağlam arasında diyalog kuran seçilmiş mimari projeler portfolyosu.');
+
 interface Project {
   id: number;
   title: string;

@@ -74,7 +74,8 @@
         </div>
 
         <!-- Single Tab Header (when only one section has content) -->
-        <div v-else-if="hasProcessContent || hasExecutionContent || hasInternshipContent" class="single-tab-header text-center mb-3xl">
+        <div v-else-if="hasProcessContent || hasExecutionContent || hasInternshipContent"
+          class="single-tab-header text-center mb-3xl">
           <h2 v-if="hasProcessContent" class="h2 text-ink">TEKNİK ÇİZİM</h2>
           <h2 v-else-if="hasExecutionContent" class="h2 text-ink">RENDER</h2>
           <h2 v-else-if="hasInternshipContent" class="h2 text-ink">STAJ FOTOĞRAFLARI</h2>
@@ -214,8 +215,7 @@
         </section>
 
         <!-- Internship Photos Gallery -->
-        <section v-if="hasInternshipContent && !hasProcessContent && !hasExecutionContent"
-          class="internship-section">
+        <section v-if="hasInternshipContent && !hasProcessContent && !hasExecutionContent" class="internship-section">
           <div class="text-center mb-2xl">
             <div class="meta-data text-blueprint">
               STAJ DÖNEMİ FOTOĞRAFLARI
@@ -226,7 +226,8 @@
           <div class="internship-photos-section">
             <h3 class="h3 text-ink mb-lg text-center">STAJ FOTOĞRAFLARI</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
-              <div v-for="(photo, index) in project.internshipPhotos" :key="`internship-${index}`" class="internship-photo-item group">
+              <div v-for="(photo, index) in project.internshipPhotos" :key="`internship-${index}`"
+                class="internship-photo-item group">
                 <div
                   class="image-frame border border-blueprint bg-canvas p-sm hover:border-annotation transition-colors duration-250">
                   <img :src="photo" :alt="`${project.title} - Staj Fotoğrafı ${index + 1}`"
@@ -358,6 +359,7 @@
 import { ref, onMounted, onUnmounted, watch, computed } from 'vue';
 import { useRoute, useRouter, RouterLink } from 'vue-router';
 import { ChevronLeft, ChevronRight, X, Download } from 'lucide-vue-next';
+import { useSeo } from '@/composables/useSeo';
 
 interface ProjectDetail {
   id: number;
@@ -423,17 +425,17 @@ const hasInternshipContent = computed(() => {
 // Logic for showing tabs
 const shouldShowTabs = computed(() => {
   if (!project.value) return false;
-  
+
   // For internship projects (only internship photos), don't show tabs
   if (hasInternshipContent.value && !hasProcessContent.value && !hasExecutionContent.value) {
     return false;
   }
-  
+
   // For regular projects with both technical drawings and renders, show 2 tabs
   if (hasProcessContent.value && hasExecutionContent.value) {
     return true;
   }
-  
+
   // For projects with only one type of content (excluding internship-only), don't show tabs
   return false;
 });
@@ -952,6 +954,12 @@ const loadProject = () => {
 // Watch for route parameter changes
 watch(() => route.params.id, () => {
   loadProject();
+}, { immediate: true });
+
+watch(project, (newProject) => {
+  if (newProject) {
+    useSeo(`${newProject.title} - Şeyma Betül Sökel`, newProject.description);
+  }
 }, { immediate: true });
 
 onMounted(() => {
