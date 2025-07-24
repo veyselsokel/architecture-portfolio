@@ -22,6 +22,10 @@
               class="nav-link text-ink hover:text-annotation px-2 lg:px-3 xl:px-4 py-2 text-base lg:text-lg font-semibold transition-colors duration-300">
               HAKKIMDA
             </router-link>
+            <router-link to="/blog"
+              class="nav-link text-ink hover:text-annotation px-2 lg:px-3 xl:px-4 py-2 text-base lg:text-lg font-semibold transition-colors duration-300">
+              BLOG
+            </router-link>
             <router-link to="/contact"
               class="nav-link text-ink hover:text-annotation px-2 lg:px-3 xl:px-4 py-2 text-base lg:text-lg font-semibold transition-colors duration-300">
               İLETİŞİM
@@ -78,6 +82,11 @@
             class="mobile-nav-link flex items-center px-4 py-3 text-lg font-semibold text-ink hover:text-annotation hover:bg-blueprint/8 rounded-lg transition-colors duration-300 min-h-[48px] focus:outline-none focus:ring-2 focus:ring-annotation focus:ring-offset-2"
             role="menuitem">
             HAKKIMDA
+          </router-link>
+          <router-link to="/blog" @click="closeMenu"
+            class="mobile-nav-link flex items-center px-4 py-3 text-lg font-semibold text-ink hover:text-annotation hover:bg-blueprint/8 rounded-lg transition-colors duration-300 min-h-[48px] focus:outline-none focus:ring-2 focus:ring-annotation focus:ring-offset-2"
+            role="menuitem">
+            BLOG
           </router-link>
           <router-link to="/contact" @click="closeMenu"
             class="mobile-nav-link flex items-center px-4 py-3 text-lg font-semibold text-ink hover:text-annotation hover:bg-blueprint/8 rounded-lg transition-colors duration-300 min-h-[48px] focus:outline-none focus:ring-2 focus:ring-annotation focus:ring-offset-2"
