@@ -40,25 +40,25 @@
           </div>
         </header>
 
-        <!-- Interactive Toggle: Process vs Execution -->
-        <div v-if="hasProcessContent && hasExecutionContent" class="study-toggle mb-3xl">
+        <!-- Interactive Toggle: Two or Three Tabs -->
+        <div v-if="shouldShowTabs" class="study-toggle mb-3xl">
           <div class="flex justify-center">
             <div class="inline-flex border border-ink">
-              <button @click="viewMode = 'process'" :class="[
+              <button v-if="hasExecutionContent" @click="viewMode = 'execution'" :class="[
+                'px-xl py-md h3 border-r border-ink transition-all duration-250 ease-architect',
+                viewMode === 'execution'
+                  ? 'bg-ink text-canvas'
+                  : 'bg-canvas text-ink hover:bg-annotation hover:text-canvas'
+              ]">
+                RENDER
+              </button>
+              <button v-if="hasProcessContent" @click="viewMode = 'process'" :class="[
                 'px-xl py-md h3 transition-all duration-250 ease-architect',
                 viewMode === 'process'
                   ? 'bg-ink text-canvas'
                   : 'bg-canvas text-ink hover:bg-annotation hover:text-canvas'
               ]">
-                SÜREÇ
-              </button>
-              <button @click="viewMode = 'execution'" :class="[
-                'px-xl py-md h3 border-l border-ink transition-all duration-250 ease-architect',
-                viewMode === 'execution'
-                  ? 'bg-ink text-canvas'
-                  : 'bg-canvas text-ink hover:bg-annotation hover:text-canvas'
-              ]">
-                UYGULAMA
+                TEKNİK ÇİZİM
               </button>
             </div>
           </div>
@@ -67,30 +67,31 @@
           <div class="flex justify-center mt-sm">
             <div class="relative w-64 h-px bg-blueprint/30">
               <div class="absolute top-0 h-px bg-annotation transition-all duration-400 ease-architect" :class="[
-                viewMode === 'process' ? 'left-0 w-1/2' : 'left-1/2 w-1/2'
+                viewMode === 'execution' ? 'left-0 w-1/2' : 'left-1/2 w-1/2'
               ]"></div>
             </div>
           </div>
         </div>
 
         <!-- Single Tab Header (when only one section has content) -->
-        <div v-else-if="hasProcessContent || hasExecutionContent" class="single-tab-header text-center mb-3xl">
-          <h2 v-if="hasProcessContent" class="h2 text-ink">TASARIM SÜRECİ</h2>
-          <h2 v-else-if="hasExecutionContent" class="h2 text-ink">FINAL UYGULAMA</h2>
+        <div v-else-if="hasProcessContent || hasExecutionContent || hasInternshipContent" class="single-tab-header text-center mb-3xl">
+          <h2 v-if="hasProcessContent" class="h2 text-ink">TEKNİK ÇİZİM</h2>
+          <h2 v-else-if="hasExecutionContent" class="h2 text-ink">RENDER</h2>
+          <h2 v-else-if="hasInternshipContent" class="h2 text-ink">STAJ FOTOĞRAFLARI</h2>
         </div>
 
-        <!-- Process Gallery (Sketches, Diagrams, Concept Notes) -->
-        <section v-if="(viewMode === 'process' && hasProcessContent) || (hasProcessContent && !hasExecutionContent)"
+        <!-- Process Gallery (Technical Drawings) -->
+        <section v-if="(viewMode === 'process' && hasProcessContent) || (hasProcessContent && !shouldShowTabs)"
           class="process-section">
-          <div v-if="hasProcessContent && hasExecutionContent" class="text-center mb-2xl">
-            <h2 class="h2 text-ink mb-sm">TASARIM SÜRECİ</h2>
+          <div v-if="shouldShowTabs" class="text-center mb-2xl">
+            <h2 class="h2 text-ink mb-sm">TEKNİK ÇİZİM</h2>
             <div class="meta-data text-blueprint">
-              ESKİZLER, DİYAGRAMLAR VE KONSEPT NOTLARI
+              TEKNİK ÇİZİMLER VE ÇALIŞMALAR
             </div>
           </div>
           <div v-else class="text-center mb-2xl">
             <div class="meta-data text-blueprint">
-              ESKİZLER, DİYAGRAMLAR VE KONSEPT NOTLARI
+              TEKNİK ÇİZİMLER VE ÇALIŞMALAR
             </div>
           </div>
 
@@ -112,31 +113,31 @@
             </div>
           </div>
 
-          <!-- Süreç Eskizleri -->
+          <!-- Teknik Çizimler -->
           <div class="sketches-grid">
-            <h3 class="h3 text-ink mb-lg text-center">SÜREÇ ESKİZLERİ</h3>
+            <h3 class="h3 text-ink mb-lg text-center">TEKNİK ÇİZİMLER</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
               <div v-for="(sketch, index) in project.sketches" :key="`sketch-${index}`" class="sketch-item group">
                 <div
                   class="image-frame border border-blueprint bg-canvas p-sm hover:border-annotation transition-colors duration-250">
-                  <img :src="sketch" :alt="`${project.title} - Eskiz ${index + 1}`"
+                  <img :src="sketch" :alt="`${project.title} - Teknik Çizim ${index + 1}`"
                     class="thumbnail-image w-full h-auto cursor-pointer filter sepia-0 group-hover:sepia transition-all duration-250"
-                    loading="lazy" decoding="async" @click="openFocusMode(sketch, `Süreç Eskizi ${index + 1}`)"
+                    loading="lazy" decoding="async" @click="openFocusMode(sketch, `Teknik Çizim ${index + 1}`)"
                     @load="handleImageLoad(sketch, $event)" @error="handleImageError(sketch, $event)" />
                 </div>
                 <div class="meta-data text-blueprint mt-sm text-center">
-                  ESKİZ {{ String(index + 1).padStart(2, '0') }}
+                  ÇİZİM {{ String(index + 1).padStart(2, '0') }}
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- Execution Gallery (Final Renders and Real-world Photography) -->
-        <section v-if="(viewMode === 'execution' && hasExecutionContent) || (hasExecutionContent && !hasProcessContent)"
+        <!-- Execution Gallery (Renders) -->
+        <section v-if="(viewMode === 'execution' && hasExecutionContent) || (hasExecutionContent && !shouldShowTabs)"
           class="execution-section">
-          <div v-if="hasProcessContent && hasExecutionContent" class="text-center mb-2xl">
-            <h2 class="h2 text-ink mb-sm">FINAL UYGULAMA</h2>
+          <div v-if="shouldShowTabs" class="text-center mb-2xl">
+            <h2 class="h2 text-ink mb-sm">RENDER</h2>
             <div class="meta-data text-blueprint">
               RENDERLAR VE GERÇEK DÜNYA FOTOĞRAFLARI
             </div>
@@ -208,6 +209,35 @@
                   CLICK TO DOWNLOAD
                 </div>
               </a>
+            </div>
+          </div>
+        </section>
+
+        <!-- Internship Photos Gallery -->
+        <section v-if="hasInternshipContent && !hasProcessContent && !hasExecutionContent"
+          class="internship-section">
+          <div class="text-center mb-2xl">
+            <div class="meta-data text-blueprint">
+              STAJ DÖNEMİ FOTOĞRAFLARI
+            </div>
+          </div>
+
+          <!-- Internship Photos -->
+          <div class="internship-photos-section">
+            <h3 class="h3 text-ink mb-lg text-center">STAJ FOTOĞRAFLARI</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+              <div v-for="(photo, index) in project.internshipPhotos" :key="`internship-${index}`" class="internship-photo-item group">
+                <div
+                  class="image-frame border border-blueprint bg-canvas p-sm hover:border-annotation transition-colors duration-250">
+                  <img :src="photo" :alt="`${project.title} - Staj Fotoğrafı ${index + 1}`"
+                    class="thumbnail-image w-full h-auto cursor-pointer group-hover:brightness-105 transition-all duration-250"
+                    loading="lazy" decoding="async" @click="openFocusMode(photo, `Staj Fotoğrafı ${index + 1}`)"
+                    @load="handleImageLoad(photo, $event)" @error="handleImageError(photo, $event)" />
+                </div>
+                <div class="meta-data text-blueprint mt-sm text-center">
+                  FOTOĞRAF {{ String(index + 1).padStart(2, '0') }}
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -340,6 +370,7 @@ interface ProjectDetail {
   sketches: string[];
   renders: string[];
   photos: string[];
+  internshipPhotos?: string[];
   pdfs?: string[];
   conceptDiagram?: {
     image: string;
@@ -351,7 +382,7 @@ const route = useRoute();
 const router = useRouter();
 
 const project = ref<ProjectDetail | null>(null);
-const viewMode = ref<'process' | 'execution'>('process');
+const viewMode = ref<'process' | 'execution' | 'internship'>('execution');
 
 const focusMode = ref({
   isActive: false,
@@ -381,6 +412,30 @@ const hasExecutionContent = computed(() => {
   const hasPhotos = project.value.photos && project.value.photos.length > 0;
 
   return hasRenders || hasPhotos;
+});
+
+// Check if project has internship content
+const hasInternshipContent = computed(() => {
+  if (!project.value) return false;
+  return project.value.internshipPhotos && project.value.internshipPhotos.length > 0;
+});
+
+// Logic for showing tabs
+const shouldShowTabs = computed(() => {
+  if (!project.value) return false;
+  
+  // For internship projects (only internship photos), don't show tabs
+  if (hasInternshipContent.value && !hasProcessContent.value && !hasExecutionContent.value) {
+    return false;
+  }
+  
+  // For regular projects with both technical drawings and renders, show 2 tabs
+  if (hasProcessContent.value && hasExecutionContent.value) {
+    return true;
+  }
+  
+  // For projects with only one type of content (excluding internship-only), don't show tabs
+  return false;
 });
 
 // Image loading state management
@@ -418,28 +473,23 @@ const mockProjects: ProjectDetail[] = [
     description: 'Yerel kaynakları destekleyerek kentsel ve kırsal yaşamı bütünleştiren, sağlıklı gıdaya erişimi artıran ve sürdürülebilir bir kentsel tarım modeli oluşturmayı amaçlayan bir proje tasarladım.',
     role: 'TASARIMCI MİMAR',
     sketches: [
-      '/images/1-bitirme-secilenler/5_teknik.jpg',
-      '/images/1-bitirme-secilenler/6_teknik.jpg',
-      '/images/1-bitirme-secilenler/7_teknik.jpg',
-      '/images/1-bitirme-secilenler/8_teknik.jpg',
-      '/images/1-bitirme-secilenler/9_teknik.jpg',
-      '/images/1-bitirme-secilenler/10_teknik.jpg',
-      '/images/1-bitirme-secilenler/11_teknik.jpg',
-      '/images/1-bitirme-secilenler/12_teknik.jpg',
-      '/images/1-bitirme-secilenler/13_teknik.jpg',
+      '/images/1-bitirme-secilenler/teknik_cizim/5_teknik.jpg',
+      '/images/1-bitirme-secilenler/teknik_cizim/6_teknik.jpg',
+      '/images/1-bitirme-secilenler/teknik_cizim/7_teknik.jpg',
+      '/images/1-bitirme-secilenler/teknik_cizim/8_teknik.jpg',
+      '/images/1-bitirme-secilenler/teknik_cizim/9_teknik.jpg',
+      '/images/1-bitirme-secilenler/teknik_cizim/10_teknik.jpg',
+      '/images/1-bitirme-secilenler/teknik_cizim/11_teknik.jpg',
+      '/images/1-bitirme-secilenler/teknik_cizim/12_teknik.jpg',
+      '/images/1-bitirme-secilenler/teknik_cizim/13_teknik.jpg',
     ],
     renders: [
-      '/images/1-bitirme-secilenler/1_render.jpg',
-      '/images/1-bitirme-secilenler/2_render.jpg',
-      '/images/1-bitirme-secilenler/3_render.jpg',
-      '/images/1-bitirme-secilenler/4_render.jpg',
+      '/images/1-bitirme-secilenler/render/1_render.jpg',
+      '/images/1-bitirme-secilenler/render/2_render.jpg',
+      '/images/1-bitirme-secilenler/render/3_render.jpg',
+      '/images/1-bitirme-secilenler/render/4_render.jpg',
     ],
-    photos: [
-      '/images/1-bitirme-secilenler/1_render.jpg',
-      '/images/1-bitirme-secilenler/2_render.jpg',
-      '/images/1-bitirme-secilenler/3_render.jpg',
-      '/images/1-bitirme-secilenler/4_render.jpg',
-    ],
+    photos: [],
   },
   {
     id: 2,
@@ -450,29 +500,28 @@ const mockProjects: ProjectDetail[] = [
     description: 'Özel ilgiye ihtiyaç duyan ilkokul ve ortaokul düzeyindeki çocuklar için kapsamlı eğitim alabilecekleri bir rehabilitasyon merkezi tasarladım.',
     role: 'ÖĞRENCİ TASARIMCI',
     sketches: [
-      '/images/2-proje-5-secilen/arazi-proje-5-photoshop_page-0001-(1).jpg',
-      '/images/2-proje-5-secilen/ekran-goruntusu-2025-07-11-124541.png',
-      '/images/2-proje-5-secilen/ekran-goruntusu-2025-07-11-124557.png',
-      '/images/2-proje-5-secilen/ekran-goruntusu-2025-07-11-124606.png',
-      '/images/2-proje-5-secilen/ekran-goruntusu-2025-07-11-124647.png',
-      '/images/2-proje-5-secilen/ekran-goruntusu-2025-07-11-124655.png',
-      '/images/2-proje-5-secilen/ekran-goruntusu-2025-07-11-124703.png',
+      '/images/2-proje-5-secilen/teknik_cizim/a3-teslim_page-0002.jpg',
+      '/images/2-proje-5-secilen/teknik_cizim/a3-teslim_page-0003.jpg',
+      '/images/2-proje-5-secilen/teknik_cizim/a3-teslim_page-0004.jpg',
+      '/images/2-proje-5-secilen/teknik_cizim/a3-teslim_page-0005.jpg',
+      '/images/2-proje-5-secilen/teknik_cizim/a3-teslim_page-0006.jpg',
+      '/images/2-proje-5-secilen/teknik_cizim/a3-teslim_page-0007.jpg',
+      '/images/2-proje-5-secilen/teknik_cizim/a3-teslim_page-0008.jpg',
+      '/images/2-proje-5-secilen/teknik_cizim/a3-teslim_page-0009.jpg',
+      '/images/2-proje-5-secilen/teknik_cizim/a3-teslim_page-0010.jpg',
+      '/images/2-proje-5-secilen/teknik_cizim/a3-teslim_page-0011.jpg',
+      '/images/2-proje-5-secilen/teknik_cizim/arazi-proje-5-photoshop_page-0001-(1).jpg',
     ],
     renders: [
-      '/images/2-proje-5-secilen/a3-teslim_page-0002.jpg',
-      '/images/2-proje-5-secilen/a3-teslim_page-0003.jpg',
-      '/images/2-proje-5-secilen/a3-teslim_page-0004.jpg',
-      '/images/2-proje-5-secilen/a3-teslim_page-0005.jpg',
-      '/images/2-proje-5-secilen/a3-teslim_page-0006.jpg',
-      '/images/2-proje-5-secilen/a3-teslim_page-0007.jpg',
-      '/images/2-proje-5-secilen/a3-teslim_page-0008.jpg',
-      '/images/2-proje-5-secilen/a3-teslim_page-0009.jpg',
-      '/images/2-proje-5-secilen/a3-teslim_page-0010.jpg',
-      '/images/2-proje-5-secilen/a3-teslim_page-0011.jpg',
+      '/images/2-proje-5-secilen/render/ekran-goruntusu-2025-07-11-124541.png',
+      '/images/2-proje-5-secilen/render/ekran-goruntusu-2025-07-11-124557.png',
+      '/images/2-proje-5-secilen/render/ekran-goruntusu-2025-07-11-124606.png',
+      '/images/2-proje-5-secilen/render/ekran-goruntusu-2025-07-11-124647.png',
+      '/images/2-proje-5-secilen/render/ekran-goruntusu-2025-07-11-124655.png',
+      '/images/2-proje-5-secilen/render/ekran-goruntusu-2025-07-11-124703.png',
+      '/images/2-proje-5-secilen/render/whatsapp-gorsel-2025-07-04-saat-13.00.50_4046f872.jpg',
     ],
-    photos: [
-      '/images/2-proje-5-secilen/whatsapp-gorsel-2025-07-04-saat-13.00.50_4046f872.jpg',
-    ],
+    photos: [],
   },
   {
     id: 3,
@@ -484,14 +533,15 @@ const mockProjects: ProjectDetail[] = [
     role: 'STAJYER MİMAR',
     sketches: [],
     renders: [],
-    photos: [
-      '/images/9-ofis-staji-secilenler/whatsapp-gorsel-2025-07-08-saat-15.21.56_10fc57d8.jpg',
-      '/images/9-ofis-staji-secilenler/whatsapp-gorsel-2025-07-08-saat-15.21.56_e5961c7d.jpg',
-      '/images/9-ofis-staji-secilenler/whatsapp-gorsel-2025-07-08-saat-15.21.57_11df8fa6.jpg',
-      '/images/9-ofis-staji-secilenler/whatsapp-gorsel-2025-07-08-saat-15.21.58_4312c4db.jpg',
-      '/images/9-ofis-staji-secilenler/whatsapp-gorsel-2025-07-08-saat-15.21.59_9f4217d0.jpg',
-      '/images/9-ofis-staji-secilenler/whatsapp-gorsel-2025-07-08-saat-15.21.59_3685ca66.jpg',
-      '/images/9-ofis-staji-secilenler/whatsapp-gorsel-2025-07-08-saat-15.22.00_246e841f.jpg',
+    photos: [],
+    internshipPhotos: [
+      '/images/9-ofis-staji-secilenler/staj_fotografları/whatsapp-gorsel-2025-07-08-saat-15.21.56_10fc57d8.jpg',
+      '/images/9-ofis-staji-secilenler/staj_fotografları/whatsapp-gorsel-2025-07-08-saat-15.21.56_e5961c7d.jpg',
+      '/images/9-ofis-staji-secilenler/staj_fotografları/whatsapp-gorsel-2025-07-08-saat-15.21.57_11df8fa6.jpg',
+      '/images/9-ofis-staji-secilenler/staj_fotografları/whatsapp-gorsel-2025-07-08-saat-15.21.58_4312c4db.jpg',
+      '/images/9-ofis-staji-secilenler/staj_fotografları/whatsapp-gorsel-2025-07-08-saat-15.21.59_9f4217d0.jpg',
+      '/images/9-ofis-staji-secilenler/staj_fotografları/whatsapp-gorsel-2025-07-08-saat-15.21.59_3685ca66.jpg',
+      '/images/9-ofis-staji-secilenler/staj_fotografları/whatsapp-gorsel-2025-07-08-saat-15.22.00_246e841f.jpg',
     ],
   },
   {
@@ -503,27 +553,27 @@ const mockProjects: ProjectDetail[] = [
     description: 'Otel odaklı, konferans salonu, atölyeler ve açık ofisler gibi toplu etkinlik alanları içeren bir proje tasarladım.',
     role: 'ÖĞRENCİ TASARIMCI',
     sketches: [
-      '/images/3-proje-4-secilenler/proje-4-a3-teslimleri_page-0002.jpg',
-      '/images/3-proje-4-secilenler/proje-4-a3-teslimleri_page-0003.jpg',
-      '/images/3-proje-4-secilenler/proje-4-a3-teslimleri_page-0004.jpg',
-      '/images/3-proje-4-secilenler/proje-4-a3-teslimleri_page-0005.jpg',
-      '/images/3-proje-4-secilenler/proje-4-a3-teslimleri_page-0006.jpg',
-      '/images/3-proje-4-secilenler/proje-4-a3-teslimleri_page-0007.jpg',
-      '/images/3-proje-4-secilenler/proje-4-a3-teslimleri_page-0008.jpg',
-      '/images/3-proje-4-secilenler/proje-4-a3-teslimleri_page-0009.jpg',
+      '/images/3-proje-4-secilenler/teknik_cizim/proje-4-a3-teslimleri_page-0001.jpg',
+      '/images/3-proje-4-secilenler/teknik_cizim/proje-4-a3-teslimleri_page-0002.jpg',
+      '/images/3-proje-4-secilenler/teknik_cizim/proje-4-a3-teslimleri_page-0003.jpg',
+      '/images/3-proje-4-secilenler/teknik_cizim/proje-4-a3-teslimleri_page-0004.jpg',
+      '/images/3-proje-4-secilenler/teknik_cizim/proje-4-a3-teslimleri_page-0005.jpg',
+      '/images/3-proje-4-secilenler/teknik_cizim/proje-4-a3-teslimleri_page-0006.jpg',
+      '/images/3-proje-4-secilenler/teknik_cizim/proje-4-a3-teslimleri_page-0007.jpg',
+      '/images/3-proje-4-secilenler/teknik_cizim/proje-4-a3-teslimleri_page-0008.jpg',
+      '/images/3-proje-4-secilenler/teknik_cizim/proje-4-a3-teslimleri_page-0009.jpg',
+      '/images/3-proje-4-secilenler/teknik_cizim/proje-4-a3-teslimleri_page-0010.jpg',
+      '/images/3-proje-4-secilenler/teknik_cizim/proje-4-a3-teslimleri_page-0011.jpg',
+      '/images/3-proje-4-secilenler/teknik_cizim/proje-4-a3-teslimleri_page-0012.jpg',
+      '/images/3-proje-4-secilenler/teknik_cizim/proje-4-a3-teslimleri_page-0013.jpg',
+      '/images/3-proje-4-secilenler/teknik_cizim/proje-4-a3-teslimleri_page-0014.jpg',
     ],
     renders: [
-      '/images/3-proje-4-secilenler/proje-4-a3-teslimleri_page-0001.jpg',
-      '/images/3-proje-4-secilenler/proje-4-a3-teslimleri_page-0010.jpg',
-      '/images/3-proje-4-secilenler/proje-4-a3-teslimleri_page-0011.jpg',
-      '/images/3-proje-4-secilenler/proje-4-a3-teslimleri_page-0012.jpg',
-      '/images/3-proje-4-secilenler/proje-4-a3-teslimleri_page-0013.jpg',
-      '/images/3-proje-4-secilenler/proje-4-a3-teslimleri_page-0014.jpg',
-      '/images/3-proje-4-secilenler/ekran-goruntusu-2025-07-11-123917.png',
-      '/images/3-proje-4-secilenler/ekran-goruntusu-2025-07-11-124052.png',
-      '/images/3-proje-4-secilenler/ekran-goruntusu-2025-07-11-124141.png',
-      '/images/3-proje-4-secilenler/ekran-goruntusu-2025-07-11-124154.png',
-      '/images/3-proje-4-secilenler/ekran-goruntusu-2025-07-11-124209.png',
+      '/images/3-proje-4-secilenler/render/ekran-goruntusu-2025-07-11-123917.png',
+      '/images/3-proje-4-secilenler/render/ekran-goruntusu-2025-07-11-124052.png',
+      '/images/3-proje-4-secilenler/render/ekran-goruntusu-2025-07-11-124141.png',
+      '/images/3-proje-4-secilenler/render/ekran-goruntusu-2025-07-11-124154.png',
+      '/images/3-proje-4-secilenler/render/ekran-goruntusu-2025-07-11-124209.png',
     ],
     photos: [],
   },
@@ -536,21 +586,20 @@ const mockProjects: ProjectDetail[] = [
     description: 'Mimari detaylanırma ve yapı sistemleri üzerine odaklanan teknik çalışma. Strüktürel çözümler ve malzeme detayları incelenmiştir.',
     role: 'TEKNİK TASARIMCI',
     sketches: [
-      '/images/4-up-secilenler/up-kismi-plan-model_page-0001.jpg',
-      '/images/4-up-secilenler/up-merdiven-plani-model_page-0001.jpg',
-      '/images/4-up-secilenler/up-cati-plani-model_page-0001.jpg',
-      '/images/4-up-secilenler/up-nokta-detayi-model_page-0001.jpg',
-      '/images/4-up-secilenler/up-cati-kesiti-model_page-0001.jpg',
-      '/images/4-up-secilenler/up-merdivem-kesiti2-model_page-0001.jpg',
-      '/images/4-up-secilenler/up-merdiven-kesiti1-model_page-0001.jpg',
-      '/images/4-up-secilenler/up-sistem-kesiti-model_page-0001.jpg',
-      '/images/4-up-secilenler/up-sistem-kesiti2-model_page-0001.jpg',
+      '/images/4-up-secilenler/teknik_cizim/up-kismi-plan-model_page-0001.jpg',
+      '/images/4-up-secilenler/teknik_cizim/up-merdiven-plani-model_page-0001.jpg',
+      '/images/4-up-secilenler/teknik_cizim/up-cati-plani-model_page-0001.jpg',
+      '/images/4-up-secilenler/teknik_cizim/up-nokta-detayi-model_page-0001.jpg',
+      '/images/4-up-secilenler/teknik_cizim/up-cati-kesiti-model_page-0001.jpg',
+      '/images/4-up-secilenler/teknik_cizim/up-merdivem-kesiti2-model_page-0001.jpg',
+      '/images/4-up-secilenler/teknik_cizim/up-merdiven-kesiti1-model_page-0001.jpg',
+      '/images/4-up-secilenler/teknik_cizim/up-sistem-kesiti-model_page-0001.jpg',
+      '/images/4-up-secilenler/teknik_cizim/up-sistem-kesiti2-model_page-0001.jpg',
+      '/images/4-up-secilenler/teknik_cizim/up-gorunus-model_page-0001.jpg',
+      '/images/4-up-secilenler/teknik_cizim/up-banyo-model_page-0001.jpg',
+      '/images/4-up-secilenler/teknik_cizim/up-mutfak-model_page-0001.jpg',
     ],
-    renders: [
-      '/images/4-up-secilenler/up-gorunus-model_page-0001.jpg',
-      '/images/4-up-secilenler/up-banyo-model_page-0001.jpg',
-      '/images/4-up-secilenler/up-mutfak-model_page-0001.jpg',
-    ],
+    renders: [],
     photos: [],
   },
   {
@@ -561,27 +610,26 @@ const mockProjects: ProjectDetail[] = [
     location: 'İSTANBUL',
     description: 'Turistlerin ilgisini Haliç surlarına çekmek amacıyla surların tarihini anlatan bir müze ve kafe tasarladım. Bu projede taşıyıcı sistem olarak çelik kullandım. Cephede oksitlenmiş çelik olan corten malzemeyi tercih ettim.',
     role: 'ÖĞRENCİ TASARIMCI',
-    sketches: [
-      '/images/5-proje-3-secilenler/cc_3-photo.png',
-      '/images/5-proje-3-secilenler/cc_4-photo.png',
-      '/images/5-proje-3-secilenler/cc_6-photo.png',
-      '/images/5-proje-3-secilenler/cc_7-photo.png',
-    ],
+    sketches: [],
     renders: [
-      '/images/5-proje-3-secilenler/cc_1-photo.png',
-      '/images/5-proje-3-secilenler/cc_2-photo.png',
-      '/images/5-proje-3-secilenler/cc_5-photo.png',
-      '/images/5-proje-3-secilenler/cc_8-photo.png',
+      '/images/5-proje-3-secilenler/render/cc_1-photo.png',
+      '/images/5-proje-3-secilenler/render/cc_2-photo.png',
+      '/images/5-proje-3-secilenler/render/cc_3-photo.png',
+      '/images/5-proje-3-secilenler/render/cc_4-photo.png',
+      '/images/5-proje-3-secilenler/render/cc_5-photo.png',
+      '/images/5-proje-3-secilenler/render/cc_6-photo.png',
+      '/images/5-proje-3-secilenler/render/cc_7-photo.png',
+      '/images/5-proje-3-secilenler/render/cc_8-photo.png',
     ],
     photos: [],
     pdfs: [
-      '/images/5-proje-3-secilenler/proje-3-paftalar-1-model.pdf',
-      '/images/5-proje-3-secilenler/proje-3-paftalar-2-model.pdf',
-      '/images/5-proje-3-secilenler/proje-3-paftalar-3-model.pdf',
-      '/images/5-proje-3-secilenler/proje-3-paftalar-4-model.pdf',
-      '/images/5-proje-3-secilenler/proje-3-paftalar-5-model.pdf',
-      '/images/5-proje-3-secilenler/proje-3-paftalar-6-model.pdf',
-      '/images/5-proje-3-secilenler/proje-3-paftalar-7-model.pdf',
+      '/images/5-proje-3-secilenler/teknik_cizim/proje-3-paftalar-1-model.pdf',
+      '/images/5-proje-3-secilenler/teknik_cizim/proje-3-paftalar-2-model.pdf',
+      '/images/5-proje-3-secilenler/teknik_cizim/proje-3-paftalar-3-model.pdf',
+      '/images/5-proje-3-secilenler/teknik_cizim/proje-3-paftalar-4-model.pdf',
+      '/images/5-proje-3-secilenler/teknik_cizim/proje-3-paftalar-5-model.pdf',
+      '/images/5-proje-3-secilenler/teknik_cizim/proje-3-paftalar-6-model.pdf',
+      '/images/5-proje-3-secilenler/teknik_cizim/proje-3-paftalar-7-model.pdf',
     ],
   },
   {
@@ -594,53 +642,54 @@ const mockProjects: ProjectDetail[] = [
     role: 'STAJYER MİMAR',
     sketches: [],
     renders: [],
-    photos: [
-      '/images/8-santiye-staji-secilen/IMG_20230701_104837.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230701_104841.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230701_105240.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230701_105419.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230701_105452.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230701_105525.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230701_105609.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230701_105617.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230704_101211.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230704_111252.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230704_111445.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230706_112540.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230706_112722.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230710_094859.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230710_094900.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230710_094933.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230710_100328.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230710_100813.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230710_101240.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230710_101441.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230717_101258.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230717_101329.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230717_101429.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230717_101433.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230717_101546.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230717_101645.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230717_101651.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230717_101739.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230717_101741.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230717_102118.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230721_122923.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230721_122949.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230721_122956.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230721_123442.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230721_123454.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230721_123640.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230721_123646.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230721_123731.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230721_123832.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230721_123837.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230721_123914.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230721_124142_1.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230721_124142.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230731_121948.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230731_121959.jpg',
-      '/images/8-santiye-staji-secilen/IMG_20230731_122003.jpg',
+    photos: [],
+    internshipPhotos: [
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230701_104837.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230701_104841.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230701_105240.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230701_105419.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230701_105452.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230701_105525.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230701_105609.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230701_105617.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230704_101211.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230704_111252.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230704_111445.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230706_112540.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230706_112722.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230710_094859.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230710_094900.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230710_094933.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230710_100328.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230710_100813.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230710_101240.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230710_101441.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230717_101258.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230717_101329.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230717_101429.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230717_101433.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230717_101546.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230717_101645.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230717_101651.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230717_101739.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230717_101741.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230717_102118.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230721_122923.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230721_122949.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230721_122956.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230721_123442.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230721_123454.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230721_123640.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230721_123646.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230721_123731.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230721_123832.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230721_123837.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230721_123914.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230721_124142_1.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230721_124142.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230731_121948.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230731_121959.jpg',
+      '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230731_122003.jpg',
     ],
   },
   {
@@ -651,19 +700,18 @@ const mockProjects: ProjectDetail[] = [
     location: 'İSTANBUL',
     description: 'Olası İstanbul depremi sonrası insanları kaostan kurtaracak bir yaşam alanı tasarladım. Bu alanda yemekhane, ilk yardım noktası ve yaşam birimleri üzerine odaklandım.',
     role: 'ÖĞRENCİ TASARIMCI',
-    sketches: [
-      '/images/6-proje-2-secilenler/sunum-paftasi.png',
-      '/images/6-proje-2-secilenler/sunum-paftasi-2.png',
-    ],
+    sketches: [],
     renders: [
-      '/images/6-proje-2-secilenler/3d-render_6-photo_lighting.jpg',
+      '/images/6-proje-2-secilenler/render/3d-render_6-photo_lighting.jpg',
+      '/images/6-proje-2-secilenler/render/sunum-paftasi.png',
+      '/images/6-proje-2-secilenler/render/sunum-paftasi-2.png',
     ],
     photos: [],
     pdfs: [
-      '/images/6-proje-2-secilenler/vaziyet-plani-model.pdf',
-      '/images/6-proje-2-secilenler/yemekhane-1-kat-model.pdf',
-      '/images/6-proje-2-secilenler/yemekhane-2-katmodel.pdf',
-      '/images/6-proje-2-secilenler/yemekhane-aa-kesit-model.pdf',
+      '/images/6-proje-2-secilenler/teknik_cizim/vaziyet-plani-model.pdf',
+      '/images/6-proje-2-secilenler/teknik_cizim/yemekhane-1-kat-model.pdf',
+      '/images/6-proje-2-secilenler/teknik_cizim/yemekhane-2-katmodel.pdf',
+      '/images/6-proje-2-secilenler/teknik_cizim/yemekhane-aa-kesit-model.pdf',
     ],
   },
   {
@@ -675,13 +723,13 @@ const mockProjects: ProjectDetail[] = [
     description: 'Sanatçıların gruplarıyla tiyatro oyunlarını sergileyebilecekleri, içinde tiyatro ve sinema müzesi de bulunan bir kültür merkezi tasarladım.',
     role: 'ÖĞRENCİ TASARIMCI',
     sketches: [
-      '/images/7-proje-1-secilenler/proje-1-arazi-model_page-0001.jpg',
-      '/images/7-proje-1-secilenler/proje-1-siyah-beyaz_page-0001.jpg',
-      '/images/7-proje-1-secilenler/siyah-beyaz-kesit_page-0001.jpg',
-      '/images/7-proje-1-secilenler/tarihi-yapi-plan-siyah-beyaz_page-0001.jpg',
+      '/images/7-proje-1-secilenler/teknik_cizim/proje-1-arazi-model_page-0001.jpg',
+      '/images/7-proje-1-secilenler/teknik_cizim/proje-1-siyah-beyaz_page-0001.jpg',
+      '/images/7-proje-1-secilenler/teknik_cizim/siyah-beyaz-kesit_page-0001.jpg',
+      '/images/7-proje-1-secilenler/teknik_cizim/tarihi-yapi-plan-siyah-beyaz_page-0001.jpg',
     ],
     renders: [
-      '/images/7-proje-1-secilenler/whatsapp-image-2023-01-04-at-11.32.28-pm-(2).jpeg',
+      '/images/7-proje-1-secilenler/render/whatsapp-image-2023-01-04-at-11.32.28-pm-(2).jpeg',
     ],
     photos: [],
   },
@@ -744,9 +792,9 @@ const openFocusMode = (imageUrl: string, caption: string) => {
     // Add sketches
     project.value.sketches.forEach((sketch, index) => {
       allImages.push(sketch);
-      allCaptions.push(`Süreç Eskizi ${index + 1}`);
+      allCaptions.push(`Teknik Çizim ${index + 1}`);
     });
-  } else {
+  } else if (viewMode.value === 'execution') {
     // Add renders
     project.value.renders.forEach((render, index) => {
       allImages.push(render);
@@ -760,6 +808,14 @@ const openFocusMode = (imageUrl: string, caption: string) => {
         allCaptions.push(`Proje Fotoğrafı ${index + 1}`);
       });
     }
+  }
+
+  // Add internship photos if this is an internship-only project
+  if (hasInternshipContent.value && !hasProcessContent.value && !hasExecutionContent.value) {
+    project.value.internshipPhotos?.forEach((photo, index) => {
+      allImages.push(photo);
+      allCaptions.push(`Staj Fotoğrafı ${index + 1}`);
+    });
   }
 
   const currentIndex = allImages.indexOf(imageUrl);
@@ -884,11 +940,12 @@ const loadProject = () => {
 
   // Set default view mode based on available content
   if (project.value) {
-    if (hasProcessContent.value) {
-      viewMode.value = 'process';
-    } else if (hasExecutionContent.value) {
+    if (hasExecutionContent.value) {
       viewMode.value = 'execution';
+    } else if (hasProcessContent.value) {
+      viewMode.value = 'process';
     }
+    // Note: internship photos will be displayed automatically for internship-only projects
   }
 };
 

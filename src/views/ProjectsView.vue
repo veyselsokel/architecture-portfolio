@@ -90,8 +90,8 @@ const projects = ref<Project[]>([
     year: 2025,
     category: 'BİTİRME PROJESİ',
     location: 'İSTANBUL',
-    image: '/images/1-bitirme-secilenler/1_render.jpg',
-    sketchImage: '/images/1-bitirme-secilenler/5_teknik.jpg'
+    image: '/images/1-bitirme-secilenler/render/1_render.jpg',
+    sketchImage: '/images/1-bitirme-secilenler/teknik_cizim/5_teknik.jpg'
   },
   {
     id: 2,
@@ -99,8 +99,8 @@ const projects = ref<Project[]>([
     year: 2024,
     category: 'PROJE 5',
     location: 'İSTANBUL',
-    image: '/images/2-proje-5-secilen/ekran-goruntusu-2025-07-11-124606.png',
-    sketchImage: '/images/2-proje-5-secilen/arazi-proje-5-photoshop_page-0001-(1).jpg'
+    image: '/images/2-proje-5-secilen/render/ekran-goruntusu-2025-07-11-124606.png',
+    sketchImage: '/images/2-proje-5-secilen/teknik_cizim/arazi-proje-5-photoshop_page-0001-(1).jpg'
   },
   {
     id: 3,
@@ -108,8 +108,8 @@ const projects = ref<Project[]>([
     year: 2023,
     category: 'STAJ',
     location: 'İSTANBUL',
-    image: '/images/9-ofis-staji-secilenler/whatsapp-gorsel-2025-07-08-saat-15.21.58_4312c4db.jpg',
-    sketchImage: '/images/9-ofis-staji-secilenler/whatsapp-gorsel-2025-07-08-saat-15.21.56_e5961c7d.jpg'
+    image: '/images/9-ofis-staji-secilenler/staj_fotografları/whatsapp-gorsel-2025-07-08-saat-15.21.58_4312c4db.jpg',
+    sketchImage: '/images/9-ofis-staji-secilenler/staj_fotografları/whatsapp-gorsel-2025-07-08-saat-15.21.56_e5961c7d.jpg'
   },
   {
     id: 4,
@@ -117,8 +117,8 @@ const projects = ref<Project[]>([
     year: 2024,
     category: 'PROJE 4',
     location: 'İSTANBUL',
-    image: '/images/3-proje-4-secilenler/ekran-goruntusu-2025-07-11-124052.png',
-    sketchImage: '/images/3-proje-4-secilenler/ekran-goruntusu-2025-07-11-123917.png'
+    image: '/images/3-proje-4-secilenler/render/ekran-goruntusu-2025-07-11-124052.png',
+    sketchImage: '/images/3-proje-4-secilenler/teknik_cizim/proje-4-a3-teslimleri_page-0001.jpg'
   },
   {
     id: 5,
@@ -126,8 +126,8 @@ const projects = ref<Project[]>([
     year: 2024,
     category: 'DETAY',
     location: 'İSTANBUL',
-    image: '/images/4-up-secilenler/up-merdiven-kesiti1-model_page-0001.jpg',
-    sketchImage: '/images/4-up-secilenler/up-kismi-plan-model_page-0001.jpg'
+    image: '/images/4-up-secilenler/teknik_cizim/up-merdiven-kesiti1-model_page-0001.jpg',
+    sketchImage: '/images/4-up-secilenler/teknik_cizim/up-kismi-plan-model_page-0001.jpg'
   },
   {
     id: 6,
@@ -135,8 +135,8 @@ const projects = ref<Project[]>([
     year: 2023,
     category: 'PROJE 3',
     location: 'İSTANBUL',
-    image: '/images/5-proje-3-secilenler/cc_1-photo.png',
-    sketchImage: '/images/5-proje-3-secilenler/cc_2-photo.png'
+    image: '/images/5-proje-3-secilenler/render/cc_1-photo.png',
+    sketchImage: '/images/5-proje-3-secilenler/render/cc_2-photo.png'
   },
   {
     id: 7,
@@ -144,8 +144,8 @@ const projects = ref<Project[]>([
     year: 2023,
     category: 'STAJ',
     location: 'İSTANBUL',
-    image: '/images/8-santiye-staji-secilen/IMG_20230701_104837.jpg',
-    sketchImage: '/images/8-santiye-staji-secilen/IMG_20230701_104841.jpg'
+    image: '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230701_104837.jpg',
+    sketchImage: '/images/8-santiye-staji-secilen/staj_fotografları/IMG_20230701_104841.jpg'
   },
   {
     id: 8,
@@ -153,8 +153,8 @@ const projects = ref<Project[]>([
     year: 2023,
     category: 'PROJE 2',
     location: 'İSTANBUL',
-    image: '/images/6-proje-2-secilenler/3d-render_6-photo_lighting.jpg',
-    sketchImage: '/images/6-proje-2-secilenler/sunum-paftasi.png'
+    image: '/images/6-proje-2-secilenler/render/3d-render_6-photo_lighting.jpg',
+    sketchImage: '/images/6-proje-2-secilenler/render/sunum-paftasi.png'
   },
   {
     id: 9,
@@ -162,8 +162,8 @@ const projects = ref<Project[]>([
     year: 2023,
     category: 'PROJE 1',
     location: 'İSTANBUL',
-    image: '/images/7-proje-1-secilenler/whatsapp-image-2023-01-04-at-11.32.28-pm-(2).jpeg',
-    sketchImage: '/images/7-proje-1-secilenler/proje-1-arazi-model_page-0001.jpg'
+    image: '/images/7-proje-1-secilenler/render/whatsapp-image-2023-01-04-at-11.32.28-pm-(2).jpeg',
+    sketchImage: '/images/7-proje-1-secilenler/teknik_cizim/proje-1-arazi-model_page-0001.jpg'
   },
 ]);
 
