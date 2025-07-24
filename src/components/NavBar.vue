@@ -46,10 +46,13 @@
         <!-- Mobile menu button -->
         <div class="md:hidden">
           <button @click="toggleMenu"
-            class="inline-flex items-center justify-center p-3 rounded-lg text-ink hover:text-annotation hover:bg-blueprint/8 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-annotation transition-colors duration-300 min-w-[44px] min-h-[44px]"
-            :aria-expanded="isMenuOpen" :aria-label="isMenuOpen ? 'Menüyü kapat' : 'Menüyü aç'">
-            <Menu v-if="!isMenuOpen" class="w-6 h-6" />
-            <X v-else class="w-6 h-6" />
+            class="relative inline-flex items-center justify-center p-3 rounded-lg text-ink hover:text-annotation hover:bg-blueprint/8 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-annotation transition-all duration-300 min-w-[48px] min-h-[48px]"
+            :aria-expanded="isMenuOpen" 
+            :aria-label="isMenuOpen ? 'Menüyü kapat' : 'Menüyü aç'"
+            :aria-controls="isMenuOpen ? 'mobile-menu' : undefined">
+            <span class="sr-only">{{ isMenuOpen ? 'Menüyü kapat' : 'Menüyü aç' }}</span>
+            <Menu v-if="!isMenuOpen" class="w-6 h-6 transition-transform duration-200" />
+            <X v-else class="w-6 h-6 transition-transform duration-200" />
           </button>
         </div>
       </div>
@@ -61,18 +64,24 @@
       leave-active-class="transition duration-200 ease-in" leave-from-class="transform translate-y-0 opacity-100"
       leave-to-class="transform -translate-y-full opacity-0">
       <div v-if="isMenuOpen"
-        class="md:hidden absolute top-full left-0 right-0 bg-canvas border-b border-blueprint/20 shadow-lg">
+        id="mobile-menu"
+        class="md:hidden absolute top-full left-0 right-0 bg-canvas border-b border-blueprint/20 shadow-lg"
+        role="menu"
+        aria-label="Ana navigasyon menüsü">
         <div class="px-2 pt-2 pb-3 space-y-1">
           <router-link to="/projects" @click="closeMenu"
-            class="mobile-nav-link flex items-center px-4 py-3 text-lg font-semibold text-ink hover:text-annotation hover:bg-blueprint/8 rounded-lg transition-colors duration-300 min-h-[44px]">
+            class="mobile-nav-link flex items-center px-4 py-3 text-lg font-semibold text-ink hover:text-annotation hover:bg-blueprint/8 rounded-lg transition-colors duration-300 min-h-[48px] focus:outline-none focus:ring-2 focus:ring-annotation focus:ring-offset-2"
+            role="menuitem">
             PROJELER
           </router-link>
           <router-link to="/about" @click="closeMenu"
-            class="mobile-nav-link flex items-center px-4 py-3 text-lg font-semibold text-ink hover:text-annotation hover:bg-blueprint/8 rounded-lg transition-colors duration-300 min-h-[44px]">
+            class="mobile-nav-link flex items-center px-4 py-3 text-lg font-semibold text-ink hover:text-annotation hover:bg-blueprint/8 rounded-lg transition-colors duration-300 min-h-[48px] focus:outline-none focus:ring-2 focus:ring-annotation focus:ring-offset-2"
+            role="menuitem">
             HAKKIMDA
           </router-link>
           <router-link to="/contact" @click="closeMenu"
-            class="mobile-nav-link flex items-center px-4 py-3 text-lg font-semibold text-ink hover:text-annotation hover:bg-blueprint/8 rounded-lg transition-colors duration-300 min-h-[44px]">
+            class="mobile-nav-link flex items-center px-4 py-3 text-lg font-semibold text-ink hover:text-annotation hover:bg-blueprint/8 rounded-lg transition-colors duration-300 min-h-[48px] focus:outline-none focus:ring-2 focus:ring-annotation focus:ring-offset-2"
+            role="menuitem">
             İLETİŞİM
           </router-link>
         </div>

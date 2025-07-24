@@ -35,12 +35,10 @@
         <!-- Architectural Quote -->
         <div class="mb-3xl">
           <h1 class="h1 text-ink mb-lg slide-in-left">
-            "MİMARLIK, IŞIKTA BİR ARAYA GETİRİLEN<br>
-            FORMLARIN ÖĞRENME OYUNU,<br>
-            DOĞRU VE MUHTEŞEM."
+            "MEKANIN, ZAMANIN BİR İŞLEVİ OLARAK ORGANİZE EDİLMESİ DEMEK OLAN "RİTİM" SANAT ESERİNİN EN ÜST KANUNUDUR."
           </h1>
           <div class="meta-data text-blueprint slide-in-right delay-300">
-            — LE CORBUSIER
+            — TURGUT CANSEVER
           </div>
         </div>
 
